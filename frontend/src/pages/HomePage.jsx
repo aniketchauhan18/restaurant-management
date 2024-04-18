@@ -1,8 +1,14 @@
-import React from 'react'
+import Header from "../components/common/Header";
+import Signup from "./SignupPage"
+import LoginPage from "../pages/LoginPage"
 
 function HomePage() {
   return (
-    <div>HomePage</div>
+    <div>
+      <Header />
+      <Signup />
+      <LoginPage />
+    </div>
   )
 }
 

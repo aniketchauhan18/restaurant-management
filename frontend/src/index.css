@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* GRADIENT */
+/* bg-gradient-to-b from-scarlet-400 to-scarlet-500 */
+
+@layer base {
+  /* html element goes here */
+  button{
+    /* making this applicable */
+    @apply bg-scarlet-500 bg-gradient-to-b from-scarlet-400 to-scarlet-500 px-1 py-1 text-white rounded
+  }
+  input {
+    @apply focus:outline-none border-b text-lg rounded p-2 invalid:border-red-400
+  }
+
+  textarea {
+    @apply border-b focus:outline-none rounded p-2 text-lg
+  }
+
+  select {
+    @apply rounded
+  }
+
+  h1 {
+    @apply text-3xl
+  }
+}
