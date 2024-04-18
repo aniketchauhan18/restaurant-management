@@ -7,7 +7,7 @@ const restaurantValidationSchema = zod.object({
   city: zod.string(),
   address: zod.string(),
   description: zod.string(),
-  number: zod.number(),
+  number: zod.string(),
   email: zod.string(),
   websiteURL: zod.string()
 })

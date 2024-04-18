@@ -100,6 +100,7 @@ const login = async (req, res) => {
     
     return res.status(200).json({
       message: "User logged In ",
+      userId: userToReturn._id,
       role: userToReturn.role,
       jwtToken
     })

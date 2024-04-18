@@ -4,6 +4,8 @@ const restaurantValidationSchema = require('../auth/schemas/restaurant.schema');
 const register = async (req, res) => {
   try {
     const { success, data } = restaurantValidationSchema.safeParse(req.body);
+    console.log(success)
+    console.log(req.body)
     if (!success){
       return res.status(400).json({
         error: "Invalid request body"
@@ -37,11 +39,11 @@ const register = async (req, res) => {
       description,
       number,
       email,
-      websiteURL
+      websiteURL,
+      userId: req.user.id
     }); //check with data
 
     res.status(200).json({
-      message: "Restaurant created Successfully",
       newRestaurant
     });
 
@@ -53,23 +55,43 @@ const register = async (req, res) => {
   }
 }
 
-const getRestaurant = async ( req, res) => {
+const getRestaurant = async ( req, res ) => {
   try {
-
     const restaurants = await Restaurant.find({}); // getting all the restaurants
     if (!restaurants) {
       return res.staus(404).json({
-        erro: "Restaurants not found"
+        error: "Restaurants not found"
       })
     }
 
     return res.status(200).json({
-      message: "restaurants fetched successfully",
       restaurants
     })
 
   } catch (error) {
     console.log("Error in getRestaurant: ", error)
+    return res.status(500).json({
+      error: error.message
+    })
+  }
+}
+
+const getRestaurantById = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const restaurants = await Restaurant.find({userId})
+    if (!restaurants) {
+      return res.staus(404).json({
+        error: "Restaurants not found"
+      })
+    } 
+
+    return res.status(200).json({
+      restaurants
+    })
+
+  } catch(e) {
+    console.lo
   }
 }
 
@@ -122,6 +144,7 @@ const deleteRestaurant = async (req, res) => {
 
 module.exports = {
   register,
+  getRestaurantById,
   deleteRestaurant,
   updateRestaurant,
   getRestaurant
