@@ -45,8 +45,7 @@ const register = async (req, res) =>  {
     // returning the user without hashedPassword
     const userToReturn = await User.findById(newUser._id).select('-password');
     res.status(200).json({
-      message: "User created successfully",
-      userToReturn
+      message: "User created successfully"
     })
   } catch (err) {
     console.log(err)
@@ -69,8 +68,14 @@ const login = async (req, res) => {
       email,
       password
     } = data
-    
+    console.log(data)
     const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({
+        error: "User doesn't exists"
+      })
+    }
     
     // checking the password
     const validPassword = await bcrypt.compare(password, user.password);
@@ -87,21 +92,18 @@ const login = async (req, res) => {
       })
     }
 
-
-    
-
     const userToReturn = await User.findById(user._id).select('-password');
     const jwtToken = generateToken({
       id: userToReturn._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email,
       role: user.role
     });
     
-    return res.cookie("token", jwtToken).status(200).json({
-      message: "User logged In "
+    return res.status(200).json({
+      message: "User logged In ",
+      role: userToReturn.role,
+      jwtToken
     })
+
   } catch (error) {
     console.log(error)
     return res.status(500).json({
