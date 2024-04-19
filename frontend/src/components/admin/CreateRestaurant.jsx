@@ -46,7 +46,7 @@ function CreateRestaurant() {
       console.log(data)
       if (response.ok) {
         console.log('yes')
-        navigate('/menu')
+        navigate('/admin/restaurant')
       }
     } catch (err) {
       console.log(err)

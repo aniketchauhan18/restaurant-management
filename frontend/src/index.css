@@ -16,7 +16,7 @@
   }
 
   textarea {
-    @apply border-b focus:outline-none rounded p-2 text-lg
+    @apply resize border rounded-md p-2 w-full max-w-lg h-32 focus:outline-none  focus:ring-blue-500 focus:border-transparent focus:ring-1
   }
 
   select {
