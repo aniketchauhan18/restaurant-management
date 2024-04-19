@@ -1,9 +1,9 @@
 const Menu = require('../models/menu.models')
-const { menuValidationSchema, menuUpdationSchema } = require('../auth/schemas/menu.schema')
+const { menuValidationSchema } = require('../auth/schemas/menu.schema')
 
 const createMenu = async (req, res) => {
-  
-  try {  
+  const restaurantId = req.params.restaurantId;
+  try {
     const { success, data } = menuValidationSchema.safeParse(req.body);
     if (!success) {
       return res.status(400).json({
@@ -27,7 +27,8 @@ const createMenu = async (req, res) => {
     const newMenu = await Menu.create({
       name,
       price,
-      description
+      description,
+      restaurantId
     })
   
     res.status(200).json({
@@ -44,8 +45,9 @@ const createMenu = async (req, res) => {
 }
 
 const getMenu = async (req, res) => {
+  const restaurantId = req.params.restaurantId;
   try {
-    const menuData = await Menu.find({}) // finding all the menus
+    const menuData = await Menu.find({restaurantId}) // finding all the menus
     if (!menuData) {
       return res.satus(404).json({
         error: "menus not found"

@@ -4,8 +4,8 @@ const { createMenu, getMenu, upadteMenu, deleteMenu } = require('../../controlle
 const authMiddleWare = require('../../middlewares/adminMiddleware');
 const jwtAuth = require('../../middlewares/jwtAuth')
 
-router.route('/').get(getMenu);
-router.route('/create').post(jwtAuth, authMiddleWare, createMenu);
+router.route('/:restaurantId').get(getMenu);
+router.route('/create/:restaurantId').post(jwtAuth, authMiddleWare, createMenu);
 router.route('/delete/:menuId').delete(jwtAuth, authMiddleWare, deleteMenu);
 router.route('/update/:menuId').patch(jwtAuth, authMiddleWare, upadteMenu);
 

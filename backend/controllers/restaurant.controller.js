@@ -86,6 +86,8 @@ const getRestaurantById = async (req, res) => {
       })
     } 
 
+    console.log(restaurants)
+
     return res.status(200).json({
       restaurants
     })
