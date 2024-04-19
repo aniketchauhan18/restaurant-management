@@ -41,7 +41,7 @@ function CreateMenu() {
     <div className="p-4 rounded flex justify-center flex-col items-center h-dvh">
       <div className="bg-scarlet-100 p-4 rounded-md">
         <p className="flex justify-center mt-3 text-6xl font-lato font-bold mb-10">
-          Create Menu
+          Add Menu
         </p>
         <form 
           onSubmit={handleSubmit}
@@ -67,7 +67,7 @@ function CreateMenu() {
             onChange={handleChange}
           />
           <button className="font-semi-bold">
-            Submit
+            Add
           </button>
         </form>
       </div>

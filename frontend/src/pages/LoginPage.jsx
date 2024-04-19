@@ -122,7 +122,12 @@ function LoginPage() {
           </form>
           <div className='flex gap-2'>
             <p>New user ?</p>
-            <Link className='text-scarlet-400 hover:text-scarlet-500 transition duration-75 ease-in-out hover:border-scarlet-500 '>Register</Link> 
+            <Link 
+              className='text-scarlet-400 hover:text-scarlet-500 transition duration-75 ease-in-out hover:border-scarlet-500'
+              to={'/register'}
+            >
+              Register
+            </Link> 
           </div>
         </div>
       </div>

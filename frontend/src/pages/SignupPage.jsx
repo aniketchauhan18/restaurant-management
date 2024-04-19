@@ -161,7 +161,10 @@ function SignupPage() {
         </form>
         <div className="flex gap-3">
           <p>Already registered?</p>
-          <Link className="text-scarlet-400 hover:text-scarlet-500 hover:border-scarlet-400">
+          <Link 
+            className="text-scarlet-400 hover:text-scarlet-500 hover:border-scarlet-400"
+            to={'/login'}
+          >
             Login
           </Link>
         </div>
