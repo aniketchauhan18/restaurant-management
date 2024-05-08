@@ -12,7 +12,7 @@ function MenuPage() {
     const currentRestaurantId = restaurantIds[restaurantIndex]
 
     const fetchData = async () => {
-      const response = await fetch(`http://localhost:3000/api/v1/menus/${currentRestaurantId}`)
+      const response = await fetch(`https://restaurantapp-7atz.onrender.com/api/v1/menus/${currentRestaurantId}`)
       const data = await response.json();
       setMenuData(data.menuData)
       if (response.ok && (data.menuData.length !== 0)) {

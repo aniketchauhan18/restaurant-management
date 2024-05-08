@@ -10,10 +10,11 @@ function Header() {
   useEffect(() => {
     const userExists = localStorage.getItem("userId");
     if (userExists){
-      setAuthenticatedUser(false)
-    } else {
-      setAuthenticatedUser(true)
+      setAuthenticatedUser((prev) => !prev)
     }
+    // } else {
+    //   setAuthenticatedUser(true)
+    // }
   }, [])
 
   // const handleShowLogin = () => {

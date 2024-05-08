@@ -53,7 +53,7 @@ function SignupPage() {
     e.preventDefault();
     console.log(form);
     try {
-      const response = await fetch('http://localhost:3000/api/v1/users/register', {
+      const response = await fetch('https://restaurantapp-7atz.onrender.com/api/v1/users/register', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"

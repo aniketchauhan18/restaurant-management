@@ -7,7 +7,7 @@ function User() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3000/api/v1/restaurants/")
+      const response = await fetch("https://restaurantapp-7atz.onrender.com/api/v1/restaurants/")
       const data = await response.json()
       setRestaurantData(data)
     }

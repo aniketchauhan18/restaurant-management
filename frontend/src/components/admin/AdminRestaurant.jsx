@@ -8,7 +8,7 @@ function AdminRestaurant() {
   useEffect(() => {
     const fetchData = async () => {
       const userId = localStorage.getItem("userId")
-      const response = await fetch(`http://localhost:3000/api/v1/restaurants/admin/${userId}`)
+      const response = await fetch(`https://restaurantapp-7atz.onrender.com/api/v1/restaurants/admin/${userId}`)
       const data  = await response.json();
       console.log(data)
       const restnts = data.restaurants;

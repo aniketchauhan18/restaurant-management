@@ -16,7 +16,7 @@ function CreateMenu() {
       const restaurantIndex = localStorage.getItem('currentRestaurant');
       const restaurants = localStorage.getItem('restaurantsId')
       const currentRestautantId = restaurants[restaurantIndex];
-      const response = await fetch(`http://localhost:3000/api/v1/menus/create/:${currentRestautantId}`, {
+      const response = await fetch(`https://restaurantapp-7atz.onrender.com/api/v1/menus/create/:${currentRestautantId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
