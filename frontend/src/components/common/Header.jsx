@@ -1,19 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 
 function Header() {
-  const [showLogin , setShowLogin] = useState(false);
+  // const [showLogin , setShowLogin] = useState(true);
+  const [authenticatedUser, setAuthenticatedUser] = useState(true)
 
   const linkClasses = "bg-scarlet-400 text-white py-1 px-2 rounded-sm hover:bg-scarlet-500 transition ease-in-out duration-300 font-lato"
 
-  const handleShowLogin = () => {
-    setShowLogin((prev) => !prev)
-  }
+  useEffect(() => {
+    const userExists = localStorage.getItem("userId");
+    if (userExists){
+      setAuthenticatedUser(false)
+    } else {
+      setAuthenticatedUser(true)
+    }
+  }, [])
+
+  // const handleShowLogin = () => {
+  //   setShowLogin((prev) => !prev)
+  // }
 
   const handleLogout = () => {
     localStorage.clear("jwtToken")
     localStorage.clear("userId")
   }
+
 
   return (
       <nav className='flex px-3 items-center sticky w-full h-12 border-b py-4'>
@@ -24,8 +35,8 @@ function Header() {
           <Link className={linkClasses}>
             About
           </Link>
-          <div className="flex justify-center" onClick={handleShowLogin}>
-            {showLogin ? 
+          <div className="flex justify-center">
+            {authenticatedUser ? 
               <Link to={'/login'} className={linkClasses}>
                 Login
               </Link>
