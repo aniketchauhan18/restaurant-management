@@ -2,7 +2,7 @@ const express = require('express');
 const connectDB = require('./db/dbConnection');
 const dotenv = require('dotenv');
 const cors = require('cors')
-const cookieParser = require('cookie-parser')
+// const cookieParser = require('cookie-parser')
 const app = express();
 const userRoutes = require('./routes/v1/user.routes');
 const restaurantRoutes = require('./routes/v1/restaurant.routes');
@@ -20,7 +20,7 @@ app.use(cors({
 }))
 
 app.use(express.json({limit: '16kb'})) // limit the size of the json file
-app.use(cookieParser());
+// app.use(cookieParser());
 
 //routes
 app.use('/api/v1/users', userRoutes);
