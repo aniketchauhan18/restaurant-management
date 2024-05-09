@@ -10,6 +10,7 @@ import User from './components/user/User'
 import Admin from './components/admin/Admin'
 import AdminRestaurant from './components/admin/AdminRestaurant'
 import CreateMenu from './components/admin/CreateMenu'
+import AdminMenu from './components/admin/AdminMenu'
 function App() {
   return (
     <div>
@@ -20,6 +21,8 @@ function App() {
         <Route path='/user' element={<User />}/>S
         <Route path='/admin' element={<Admin />}/>
         <Route path='/admin/restaurant' element={<AdminRestaurant />}/>
+        <Route path='/admin/menu' element={<AdminMenu />}/>
+
         <Route path='/menu' element={<MenuPage />}/>
         <Route path='/createmenu' element={<CreateMenu />}/>
         <Route path='/restaurant' element={<RestaurantPage />}/>
