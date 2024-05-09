@@ -34,7 +34,7 @@ function AdminRestaurant() {
         </div>
         <div>
           <Link 
-            to={'/menu'} 
+            to={'/admin/menu'} 
             className='bg-scarlet-600 rounded py-1 px-2 text-white'
             onClick={() => handleItemClick(index)} 
           >
