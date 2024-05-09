@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
-import CreateMenu from "../components/admin/CreateMenu";
-import { Link } from "react-router-dom"
+import { useState, useEffect } from "react";
 
 function MenuPage() {
-  const [menuData , setMenuData] = useState([]);
-  const [showMenuData, setShowMenuData] = useState(false);
+  const [menuData, setMenuData] = useState([]);
+  const [showMenuData, setShowMenuData] = useState(false)
 
   useEffect(() => {
-    const restaurantIds = localStorage.getItem("restaurantsId").split(',');
-    const restaurantIndex = localStorage.getItem("currentRestaurant");
+    const restaurantIds = localStorage.getItem("userRestaurantsIds").split(",")
+    const restaurantIndex = localStorage.getItem("userCurrentRestaurant")
     const currentRestaurantId = restaurantIds[restaurantIndex]
+    console.log(currentRestaurantId)
 
-    const fetchData = async () => {
+    const fetchData = async() => {
       const response = await fetch(`https://restaurantapp-7atz.onrender.com/api/v1/menus/${currentRestaurantId}`)
-      const data = await response.json();
+      const data = await response.json()
+      console.log(data)
       setMenuData(data.menuData)
       if (response.ok && (data.menuData.length !== 0)) {
         setShowMenuData(true)
@@ -23,9 +23,6 @@ function MenuPage() {
   }, [])
 
 
-  const linkClasses = "bg-scarlet-400 text-white py-1 px-2 rounded-sm hover:bg-scarlet-500 transition ease-in-out duration-300 font-lato"
-  
-  
   return (
     <div className="flex flex-col h-dvh bg-cover bg-center">    
       <div className="w-full mt-4 flex">
@@ -34,7 +31,7 @@ function MenuPage() {
             {showMenuData ? 
                menuData.map((menu, index) => {
                 return (
-                  <div 
+                  <div
                     key={index}
                     className="h-[200px] w-[200px] bg-gray-300 p-2 rounded border shadow"
                   >
@@ -45,14 +42,6 @@ function MenuPage() {
             : 
               "No menu Added"
             }
-          </div>
-          <div>
-            <Link
-              className={linkClasses}
-              to={'/createmenu'}
-            >
-              Add Menu
-            </Link>
           </div>
         </div>
       </div>
