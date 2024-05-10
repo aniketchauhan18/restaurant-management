@@ -1,49 +1,28 @@
-const User = require('../models/user.models');
-const bcrypt = require('bcrypt');
-const {
-  userRegisterationSchema,
-  userLoginSchema
-} = require('../auth/schemas/user.schema');
-const generateToken = require('../utils/generateToken');
+const generateToken = require('../utils/authUtils/generateToken');
+const { userExists, createUser, findUser } = require('../utils/userUtils/userUtils');
+const hashPassword = require('../utils/authUtils/hashPassword');
+const validatePassword = require('../utils/authUtils/validatePassword');
 
 const register = async (req, res) =>  {
   try {
-    const { success, data } = userRegisterationSchema.safeParse(req.body);
-    if (!success) {
-      return res.status(400).json({
-        error: "Invalid request body"
-      })
+    const { firstName, lastName, email, role, password } = req.validatedData;
+    const user = await userExists(email)
+    if (user) {
+    return res.status(400).json({
+      message: "User already exists"
+    })
     }
 
-    const {
-      firstName,
-      lastName,
-      email,
-      role,
-      password
-    } = data;
+    const hashedPassword = await hashPassword(password)
 
-    const userExists = await User.findOne({email})
-    if (userExists) {
-      return res.status(400).json({
-        message: "User already exists"
-      })
-    }
-
-    // hashing the password
-    const salt = await bcrypt.genSalt();
-    const hashedPassword = await bcrypt.hash(password, salt);
-
-    const newUser = await User.create({
+    const newUser = {
       firstName,
       lastName,
       email,
       role,
       password: hashedPassword
-    })
-
-    // returning the user without hashedPassword
-    const userToReturn = await User.findById(newUser._id).select('-password');
+    }
+    const userToReturn = await createUser(newUser)
     res.status(200).json({
       message: "User created successfully"
     })
@@ -57,30 +36,20 @@ const register = async (req, res) =>  {
 
 const login = async (req, res) => {
   try {
-    const { success , data } = userLoginSchema.safeParse(req.body);
-    if (!success) {
-      return res.status(400).json({
-        error: "Invalid request body"
-      })
-    }
+    const { email, password } = req.validatedData
 
-    const {
-      email,
-      password
-    } = data
-    console.log(data)
-    const user = await User.findOne({ email });
+    const user = await findUser(email)
+    console.log(user)
 
     if (!user) {
       return res.status(404).json({
         error: "User doesn't exists"
       })
     }
+    const userPassword = user.password;
+    const correctPassword = validatePassword(password, userPassword)
     
-    // checking the password
-    const validPassword = await bcrypt.compare(password, user.password);
-    
-    if (!validPassword) {
+    if (!correctPassword) {
       return res.status(400).json({
         error: "Invalid password"
       })
@@ -92,11 +61,8 @@ const login = async (req, res) => {
       })
     }
 
-    const userToReturn = await User.findById(user._id).select('-password');
-    const jwtToken = generateToken({
-      id: userToReturn._id,
-      role: user.role
-    });
+    const userToReturn = await findUser(user._id)
+    const jwtToken = generateToken({ id: userToReturn._id, role: user.role });
     
     return res.status(200).json({
       message: "User logged In ",
@@ -107,13 +73,8 @@ const login = async (req, res) => {
 
   } catch (error) {
     console.log(error)
-    return res.status(500).json({
-      error: "Internal server error"
-    })
+    return res.status(500).json({ error: "Internal server error" })
   }
 }
 
-module.exports = {
-  register,
-  login
-}
+module.exports = { register, login }
