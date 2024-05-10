@@ -28,3 +28,11 @@ const entityNotExist = (res, entity) => {
   const message = `${entity} doesn't exist`
   return sendSuccess(res, 404, message)
 }
+
+module.exports = {
+  InternalServerError,
+  InvalidRequestBody,
+  entityAlreadyExists,
+  entityCreatedSuccessfully,
+  entityNotExist
+}
