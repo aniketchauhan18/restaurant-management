@@ -1,112 +1,63 @@
-const Menu = require('../models/menu.models')
-const { menuValidationSchema } = require('../auth/schemas/menu.schema')
+const { menuExists, menuCreate, menuDelete, menuUpdate, menuFind  } = require('../utils/adminUtils/menuUtils');
+const { entityAlreadyExists, entityCreatedSuccessfully, entityNotExist, InvalidRequestBody, InternalServerError, entityDeletedSucessfully, getEntityReponse,entityUpdatedSuccessfully } = require('../utils/errorResponse')
 
 const createMenu = async (req, res) => {
-  const restaurantId = req.params.restaurantId;
   try {
-    const { success, data } = menuValidationSchema.safeParse(req.body);
-    if (!success) {
-      return res.status(400).json({
-        error: "Invalid create menu request body"
-      })
-    }
+    
+    const restaurantId = req.params.restaurantId;
+    const { menuValidatedData } = req
   
-    const {
-      name,
-      price,
-      description
-    } = data
-  
-    const menuExists = await Menu.findOne({name});
-    if (menuExists) {
-      return res.status(400).json({
-        error: "Menu with same name already exists"
-      })
-    }
-  
-    const newMenu = await Menu.create({
-      name,
-      price,
-      description,
-      restaurantId
-    })
-  
-    res.status(200).json({
-      message: "Menu created successfully",
-      newMenu
-    })
+    const menuExist = await menuExists(menuValidatedData.name)
+
+    console.log(menuExist)
+
+    if (menuExist) return entityAlreadyExists(res, "Menu")
+    const newMenu = await menuCreate( {...menuValidatedData, restaurantId} )
+    console.log(newMenu)
+
+    return entityCreatedSuccessfully(res, "Menu")
 
   } catch (error) {
     console.log(error);
-    return res.status(500).json({
-      error: "Internal Server error"
-    })
+    return InternalServerError(res)
   }
 }
 
 const getMenu = async (req, res) => {
-  const restaurantId = req.params.restaurantId;
   try {
-    const menuData = await Menu.find({restaurantId}) // finding all the menus
-    if (!menuData) {
-      return res.satus(404).json({
-        error: "menus not found"
-      })
-    }
-    return res.status(200).json({
-      message: "fetched data successfully",
-      menuData
-    })
+    const menuData = await menuFind(req.params.restaurantId) // finding all the menus
+    if (!menuData) return entityNotExist(res, "Menu")
+    return getEntityReponse(res, menuData)
 
   } catch (error) {
     console.log("Error in getMenu: ", error)
-    return res.status(500).json({
-      error: "Internal server error"
-    })
+    return InternalServerError(res)
   }
 }
 
 const upadteMenu = async (req, res) => {
   try {
-    // const { success, data } = menuUpdationSchema.safeParse(req.body);
-    // if (!success) {
-      //   return res.status(400).json({
-        //     error: "Invalid request body"
-        //   })
-        // }
-    
-    const id = req.params.menuId;
     const data = req.body;
-    const menu = await Menu.findById(id);
-    const updatedMenu = await Menu.findByIdAndUpdate(menu._id, data, { runValidators: true });
-    if (!updatedMenu) {
-      return res.status(404).json({
-        error: "Menu not found"
-      })
-    }
+    const menu = await menuFind(req.params.menuId);
+    if (!menu) return entityNotExist(res, "Menu")
 
-    return res.status(200).json({
-      message: "Menu updated successfully"
-    })
+    const updatedMenu = await menuUpdate(menu._id, data)
+
+    if (!updatedMenu) return entityNotExist(res, "Menu")
+    return entityUpdatedSuccessfully(res, "Menu")
 
   } catch (error) {
     console.log("updateMenu", error)
+    return InternalServerError(res)
   }
 }
 
 const deleteMenu = async(req, res) => {
   try {
-    const menuId = req.params.menuId;
-    const deleteMenu = await Menu.findByIdAndDelete(menuId); // fidning menu by id and deleting id
-    if (!deleteMenu) {
-      return res.status(404).json({
-        error: "Menu not found"
-      })
-    }
+    const deleteMenu = await menuDelete(req.params.menuId); // finding menu by id and deleting id
+    if (!deleteMenu) return entityNotExist(res, "Menu")
 
-    return res.status(200).json({
-      message: "Menu deleted successfully"
-    })
+    return entityDeletedSucessfully(res, "Menu")
 
   } catch (error) {
     console.log("Error in deleteMenu: ", error)

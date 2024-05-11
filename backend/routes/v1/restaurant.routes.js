@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router();
 const { register, deleteRestaurant, updateRestaurant, getRestaurant, getRestaurantById } = require('../../controllers/restaurant.controller');
 const adminMiddleWare = require('../../middlewares/admin/adminMiddleware');
-// const jwtAuth = require('../../middlewares/jwtAuth');
 const jwtAuth = require('../../middlewares/auth/jwtAuth');
 const restaurantRegisterationValidation = require('../../middlewares/admin/restaurantMiddleware');
 

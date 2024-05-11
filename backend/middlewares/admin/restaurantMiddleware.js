@@ -1,18 +1,15 @@
 const restaurantValidationSchema = require('../../auth/schemas/restaurant.schema')
+const { InternalServerError } = require('../../utils/errorResponse')
 
 const restaurantRegisterationValidation = (req, res, next) => {
   try {
-    const { success, data } = restaurantValidationSchema.safeParse
+    const { success, data } = restaurantValidationSchema.safeParse(req.body)
     req.validatedData = data
-    (req.body)
-    if (!success) {
-      return res.status(400).json({
-        error: "Invalid req body"
-      })
-    }
+    if (!success) return InvalidRequestBody(res)
     next()
   } catch (err) {
-    res.status(500).json({error: "Internal server error"})
+    console.log(";;;;;;;;;;;;")
+    return InternalServerError(res)
   }
 }
 

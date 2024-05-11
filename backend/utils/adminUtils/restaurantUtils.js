@@ -8,6 +8,8 @@ const restaurantExists = async(email) => {
 
 const createRestaurant = async(newRestaurant) => {
   const restaurant = await Restaurant.create(newRestaurant)
+  console.log('--------------------')
+  console.log(restaurant)
   return restaurant
 }
 
