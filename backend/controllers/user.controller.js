@@ -2,7 +2,7 @@ const generateToken = require('../utils/authUtils/generateToken');
 const { userExists, createUser, findUser } = require('../utils/userUtils/userUtils');
 const hashPassword = require('../utils/authUtils/hashPassword');
 const validatePassword = require('../utils/authUtils/validatePassword');
-const { entityAlreadyExists, entityCreatedSuccessfully, entityNotExist, InvalidRequestBody, InternalServerError } = require('../utils/errorResponse')
+const { entityAlreadyExists, entityCreatedSuccessfully, entityNotExist, InvalidRequestBody, InternalServerError, sendEntityReponse } = require('../utils/errorResponse')
 
 const register = async (req, res) =>  {
   try {
@@ -50,16 +50,16 @@ const login = async (req, res) => {
     if (!user || !correctPassword) {
       return InvalidRequestBody(res)
     }
-
-    const userToReturn = await findUser(user._id)
-    const jwtToken = generateToken({ id: userToReturn._id, role: user.role });
     
-    return res.status(200).json({
+    const jwtToken = generateToken({ id: user._id, role: user.role });
+    const data = {
       message: "User logged In ",
-      userId: userToReturn._id,
-      role: userToReturn.role,
+      userId: user._id,
+      role: user.role,
       jwtToken
-    })
+    }
+    
+    return sendEntityReponse(res, data)
 
   } catch (error) {
     console.log(error)
