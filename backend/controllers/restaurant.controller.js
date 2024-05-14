@@ -1,6 +1,6 @@
 const Restaurant = require('../models/restaurant.models');
 const { restaurantExists, createRestaurant, findRestaurant, restaurantUpdate, restaurantDelete} = require('../utils/adminUtils/restaurantUtils');
-const { entityAlreadyExists, entityCreatedSuccessfully, entityNotExist, InvalidRequestBody, InternalServerError, entityDeletedSucessfully, getEntityReponse } = require('../utils/errorResponse')
+const { entityAlreadyExists, entityCreatedSuccessfully, entityNotExist, InvalidRequestBody, InternalServerError, entityDeletedSucessfully, sendEntityResponse } = require('../utils/errorResponse')
 
 const register = async (req, res) => {
   try {
@@ -25,7 +25,7 @@ const getRestaurant = async ( req, res ) => {
   try {
     const restaurants = await findRestaurant();
     if (!restaurants) return entityNotExist(res, "Restaurant")
-    return getEntityReponse(res, restaurants)
+    return sendEntityResponse(res, restaurants)
 
   } catch (error) {
     console.log("Error in getRestaurant: ", error)
@@ -37,7 +37,7 @@ const getRestaurantById = async (req, res) => {
   try {
     const restaurants = await findRestaurant(req.params.id)
     if (!restaurants) return entityNotExist(res, "Restaurant")
-    return getEntityReponse(res, restaurants)
+    return sendEntityResponse(res, restaurants)
   } catch(err) {
     console.log(err)
     return InternalServerError(res)
