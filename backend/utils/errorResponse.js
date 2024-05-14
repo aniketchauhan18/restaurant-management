@@ -46,7 +46,7 @@ const entityUpdatedSuccessfully = (res, entity) => {
   return sendSuccess(res, 200, message)
 }
 
-const getEntityReponse = (res, data) => {
+const sendEntityReponse = (res, data) => {
   return sendResponse(res, 200, data)
 }
 
@@ -58,5 +58,5 @@ module.exports = {
   entityNotExist,
   entityDeletedSucessfully,
   entityUpdatedSuccessfully,
-  getEntityReponse
+  sendEntityReponse
 }
