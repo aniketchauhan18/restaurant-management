@@ -2,7 +2,7 @@ const generateToken = require('../utils/authUtils/generateToken');
 const { userExists, createUser, findUser } = require('../utils/userUtils/userUtils');
 const hashPassword = require('../utils/authUtils/hashPassword');
 const validatePassword = require('../utils/authUtils/validatePassword');
-const { entityAlreadyExists, entityCreatedSuccessfully, entityNotExist, InvalidRequestBody, InternalServerError, sendEntityReponse } = require('../utils/errorResponse')
+const { entityAlreadyExists, entityCreatedSuccessfully, entityNotExist, InvalidRequestBody, InternalServerError, sendEntityResponse } = require('../utils/errorResponse')
 
 const register = async (req, res) =>  {
   try {
@@ -59,7 +59,7 @@ const login = async (req, res) => {
       jwtToken
     }
     
-    return sendEntityReponse(res, data)
+    return sendEntityResponse(res, data)
 
   } catch (error) {
     console.log(error)
