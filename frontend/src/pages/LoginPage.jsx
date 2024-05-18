@@ -111,8 +111,8 @@ function LoginPage() {
     // </div>
     <div className='flex justify-center items-center h-screen'>
       <div className='flex  flex-col sm:flex-row justify-center w-80 sm:w-[600px]  max-w-[600px]'>
-        <div className='flex h-16 sm:h-96 bg-scarlet-400 rounded-t-lg  sm:rounded-none sm:rounded-l-lg text-white justify-center p-3  sm:w-96'>
-          <p className='flex justify-center font-poppins items-center'>Welcome Back</p>
+        <div className='flex h-16 sm:h-96 bg-scarlet-400 rounded-t-lg  sm:rounded-none sm:rounded-l-lg text-white justify-center p-3  sm:w-full'>
+          <p className='flex justify-center font-poppins items-center sm:text-3xl text-xl sm:font-semibold'>Welcome Back</p>
         </div>
         <div className='flex flex-col justify-center bg-scarlet-50 sm:pt-5 rounded-b-lg sm:rounded-none sm:rounded-r-lg sm:w-[600px] sm:px-1'>
         <form onSubmit={handleSubmit} className='pt-3 pb-0 px-3 gap-3 flex flex-col justify-center'>
@@ -136,7 +136,7 @@ function LoginPage() {
               }
               required
               name='password'
-              placeholder='password'
+              placeholder='Password'
               className='w-full md:text-base'
               onChange={handleChange}
             />
@@ -145,7 +145,7 @@ function LoginPage() {
             </span>
           </div>
           <div className='flex w-full justify-center sm:mt-4'>
-            <button className='basis-10/12 text-sm'>
+            <button type='submit' className='basis-10/12 text-sm'>
               Login
             </button>
           </div>
