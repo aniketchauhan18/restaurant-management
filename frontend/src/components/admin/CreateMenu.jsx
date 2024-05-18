@@ -1,41 +1,39 @@
 import { useState } from "react";
 
 function CreateMenu() {
-  const [form , setForm] = useState({
+  const [form, setForm] = useState({
     name: "",
     price: "",
-    description: ""
-  })
-  
-  
-  const handleSubmit = async(e) => {
+    description: "",
+  });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(form)
-      const jwtToken = localStorage.getItem('jwtToken');
-      const restaurantIndex = localStorage.getItem('currentRestaurant');
-      const restaurants = localStorage.getItem('restaurantsId')
+      console.log(form);
+      const jwtToken = localStorage.getItem("jwtToken");
+      const restaurantIndex = localStorage.getItem("currentRestaurant");
+      const restaurants = localStorage.getItem("restaurantsId");
       const currentRestautantId = restaurants[restaurantIndex];
-      const response = await fetch(`https://restaurantapp-7atz.onrender.com/api/v1/menus/create/:${currentRestautantId}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Autorization': `Bearer ${jwtToken}`
+      const response = await fetch(
+        `http://localhost:3000/api/v1/menus/create/:${currentRestautantId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Autorization: `Bearer ${jwtToken}`,
+          },
+          body: JSON.stringify(form),
         },
-        body: JSON.stringify(form)
-      })
-      
+      );
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
-  }
-  
+  };
+
   const handleChange = (e) => {
-    setForm(
-      ...form,
-      [e.target.name] = e.target.value
-    )
-  }
+    setForm(...form, ([e.target.name] = e.target.value));
+  };
 
   return (
     <div className="p-4 rounded flex justify-center flex-col items-center h-dvh">
@@ -43,18 +41,15 @@ function CreateMenu() {
         <p className="flex justify-center mt-3 text-6xl font-lato font-bold mb-10">
           Add Menu
         </p>
-        <form 
-          onSubmit={handleSubmit}
-          className="flex flex-col gap-4 "
-        >
-          <input 
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 ">
+          <input
             type="text"
             placeholder="Name"
             name="name"
             required
             onChange={handleChange}
           />
-          <input 
+          <input
             type="text"
             required
             name="price"
@@ -66,13 +61,11 @@ function CreateMenu() {
             name="description"
             onChange={handleChange}
           />
-          <button className="font-semi-bold">
-            Add
-          </button>
+          <button className="font-semi-bold">Add</button>
         </form>
       </div>
     </div>
-  )
+  );
 }
 
 export default CreateMenu;

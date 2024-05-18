@@ -5,25 +5,159 @@
 /* GRADIENT */
 /* bg-gradient-to-b from-scarlet-400 to-scarlet-500 */
 
+body,
+#root {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* nav-bar */
+@media (max-width: 570px) {
+  .restaurant-heading {
+    display: none;
+  }
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .restaurant-card-parent {
+    gap: 3%;
+    justify-content: space-evenly;
+  }
+  .restaurant-card {
+    display: flex;
+    flex-basis: 22%;
+    margin-bottom: 1rem;
+  }
+}
+
+/* HomePage */
+@media (max-width: 950px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+  }
+  .hero-1 {
+    max-height: 200px;
+  }
+  .hero-img {
+    background-size: cover;
+    height: 200px;
+  }
+  .restaurant-card-parent {
+    gap: 3%;
+    justify-content: space-evenly;
+  }
+  .restaurant-card {
+    display: flex;
+    flex-basis: 30%;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .restaurant-card-parent {
+    gap: 3%;
+    justify-content: space-evenly;
+  }
+  .restaurant-card {
+    display: flex;
+    flex-basis: 40%;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 770px) {
+  .rest-frm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 10px;
+  }
+  .rest-frm > div {
+    display: flex;
+    width: 100%;
+  }
+  .parent-cards-hp {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Restaurant Page */
+@media (max-width: 515px) {
+  .restaurant-card {
+    display: flex;
+    flex-basis: 80%;
+  }
+  .signup {
+    display: flex;
+    flex-basis: 50%;
+  }
+  .rest-frm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .rest-frm > div {
+    display: flex;
+    width: 100%;
+  }
+  .signup-form {
+    display: flex;
+    flex-basis: 100%;
+  }
+  .login-input-div {
+    display: flex;
+    justify-content: center;
+  }
+
+  .login-div {
+    display: flex;
+    width: 85%;
+  }
+
+  .login-input {
+    display: flex;
+    width: 85%;
+  }
+
+  .rest-header {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+}
+
 @layer base {
   /* html element goes here */
-  button{
+  button {
     /* making this applicable */
-    @apply bg-scarlet-500 bg-gradient-to-b from-scarlet-400 to-scarlet-500 px-1 py-1 text-white rounded
+    @apply bg-scarlet-400 font-poppins font-normal hover:bg-scarlet-500  transition duration-300 border-e-slate-50 bg-gradient-to-b  px-1 py-1 text-white rounded;
   }
   input {
-    @apply focus:outline-none border-b text-lg rounded p-2 invalid:border-red-400
+    @apply focus:outline-none border font-poppins font-light rounded-md md:rounded-lg py-2 px-2 sm:p-2 text-[14px] sm:text-base /*invalid:border-red-400*/;
   }
 
   textarea {
-    @apply resize border rounded-md p-2 w-full max-w-lg h-32 focus:outline-none  focus:ring-blue-500 focus:border-transparent focus:ring-1
+    @apply resize-y border font-poppins font-light rounded-md p-2 w-full max-w-2xl h-32 focus:outline-none  focus:ring-blue-500 focus:border-transparent focus:ring-1;
   }
 
   select {
-    @apply rounded
+    @apply p-0 m-0 rounded font-poppins font-normal text-xs;
+  }
+
+  option {
+    @apply text-sm sm:text-base p-0 m-0;
   }
 
   h1 {
-    @apply text-3xl
+    @apply text-3xl;
   }
 }

@@ -1,13 +1,13 @@
-import Header from "./Header"
-import Footer from "./Footer"
-function MainLayout( {children} ) {
+import Header from "./Header";
+import Footer from "./Footer";
+function MainLayout({ children }) {
   return (
     <>
       <Header />
-        {children}
+      {children}
       <Footer />
     </>
-  )
+  );
 }
 
-export default MainLayout
+export default MainLayout;
