@@ -6,7 +6,7 @@ function Footer() {
   const linkClasses = "text-2xl transform  duration-200 hover:scale-110";
 
   return (
-    <footer className="flex flex-col mt-16 sm:mt-10">
+    <footer className="flex flex-col font-inter mt-16 sm:mt-10">
       <div className="flex flex-col">
         <div className="flex justify-evenly md:self-start md:gap-10 md:pl-5">
           <Link>
