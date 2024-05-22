@@ -31,7 +31,7 @@ function Header() {
     setIsLoggedIn(false);
   };
   const userId = localStorage.getItem("userId")
-  const restaurantPath = isLoggedIn ? (adminRestaurant ? `/admin/restaurants/${userId}` : `/user/restaurants/${userId}`) : '/login'
+  const restaurantPath = isLoggedIn ? (adminRestaurant ? `/admin/restaurants/${userId}` : `/user/${userId}/restaurants`) : '/login'
   console.log(restaurantPath)
 
   return (

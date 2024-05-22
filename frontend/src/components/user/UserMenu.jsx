@@ -3,7 +3,7 @@ import UserMenuCard from "./UserMenuCard";
 import { useQuery } from "@tanstack/react-query"
 import { fetchUserMenu } from "../../api/dataFetcher";
 
-function Menu() {
+function UserMenu() {
   const { restaurantId } = useParams()
 
   // useEffect(() => {
@@ -59,4 +59,4 @@ function Menu() {
   );
 }
 
-export default Menu;
+export default UserMenu;

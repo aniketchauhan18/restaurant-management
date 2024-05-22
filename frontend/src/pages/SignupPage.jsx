@@ -70,111 +70,14 @@ function SignupPage() {
   };
 
   return (
-    // <div className="flex w-full h-dvh flex-col">
-    //   <div className="flex justify-center items-center h-dvh">
-    //     <div className="flex flex-col justify-center items-center p-5 rounded bg-scarlet-50">
-    //       <h1 className="mb-3 text-4xl font-Roboto font-bold">
-    //         Signup
-    //       </h1>
-    //       <form
-    //         className="flex flex-col justify-center items-center w-full text-zinc-700"
-    //         onSubmit={handleSubmit}
-    //       >
-    //         <div className="flex flex-col gap-5 p-3 w-96 ">
-    //           <input
-    //             type="text"
-    //             placeholder="Firstname"
-    //             name="firstName"
-    //             required
-    //             className={inputClasses}
-    //             onChange={handleChange}
-    //           />
-    //           <input
-    //             type="text"
-    //             placeholder="Lastname"
-    //             name="lastName"
-    //             className={inputClasses}
-    //             onChange={handleChange}
-    //           />
-    //           <select
-    //             className={inputClasses}
-    //             name="role"
-    //             onChange={handleChange}
-    //           >
-    //             <option
-    //             defaultValue="Select"
-    //             >
-    //               Select role
-    //             </option>
-    //             <option
-    //               value="user"
-    //             >
-    //               User
-    //             </option>
-    //             <option
-    //               value="admin"
-    //             >
-    //               Admin
-    //             </option>
-    //           </select>
-    //           <div className="flex flex-col">
-    //             <input
-    //               type="email"
-    //               required
-    //               placeholder="Email"
-    //               className="peer"
-    //               name="email"
-    //               onChange={handleChange}
-    //             />
-    //             <p className="invisible text-red-500 text-sm peer-invalid:visible peer-focus:invisible ml-1">
-    //               Must be a valid email address
-    //             </p>
-    //           </div>
-    //           <input
-    //             type={
-    //               showPassword ? "text" : "password"
-    //             }
-    //             placeholder="Password"
-    //             name="password"
-    //             onChange={handleChange}
-    //             required
-    //             className={inputClasses}
-    //           />
-    //           <div className="flex text-sm gap-2 items-center">
-    //             <p>Show password?</p>
-    //             <div className="flex justify-center items-center">
-    //               <input
-    //                 type="checkbox"
-    //                 value={showPassword}
-    //                 onChange={showPass}
-    //               />
-    //             </div>
-    //           </div>
-    //           <button type="submit" className="text-base">
-    //             Signup
-    //           </button>
-    //         </div>
-    //       </form>
-    //       <div className="flex gap-3 text-base">
-    //         <p>Already registered?</p>
-    //         <Link
-    //           className="text-scarlet-400 hover:text-scarlet-500 hover:border-scarlet-400 text-base"
-    //           to={'/login'}
-    //         >
-    //           Login
-    //         </Link>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
-    <div className="flex font-poppins w-full h-screen justify-center items-center">
+    <div className="flex font-inter w-full h-screen justify-center items-center">
       <div className="flex flex-col sm:flex-row w-3/4 justify-center">
         <div className="flex h-16 sm:h-auto sm:w-[400px] items-center justify-center bg-scarlet-400 text-white rounded-t-lg sm:rounded-none  sm:rounded-l-lg">
           <p className="sm:text-4xl font-medium text-xl sm:font-semibold">
             Signup
           </p>
         </div>
-        <div className="pt-2 sm:pt-10 bg-scarlet-50 sm:w-[400px] rounded-b-lg sm:rounded-none sm:rounded-r-lg">
+        <div className="pt-2 sm:pt-10 border  border-stone-300 sm:w-[400px] rounded-b-lg sm:rounded-none sm:rounded-r-lg">
           <form
             onSubmit={handleSubmit}
             className="flex flex-col gap-2 p-4 mb-3"
@@ -240,7 +143,7 @@ function SignupPage() {
                 Signup
               </button>
             </div>
-            <div className="flex text-xs justify-center items-center">
+            <div className="flex text-xs sm:text-sm justify-center items-center">
               <p className="mr-1">Already registered?</p>
               <Link
                 className="text-scarlet-400 hover:text-scarlet-500 hover:border-scarlet-400 text-xs sm:text-sm"

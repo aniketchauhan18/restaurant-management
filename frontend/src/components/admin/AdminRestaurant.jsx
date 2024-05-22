@@ -1,37 +1,42 @@
-import { useEffect, useState } from "react";
 import RestaurantCard from "../common/RestaurantCard";
 import { Link, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { fetchAdminRestaurats } from "../../api/dataFetcher";
 
 function AdminRestaurant() {
-  const [restaurants, setRestaurants] = useState([]);
 
   const { id } = useParams()
 
+  const { data: restaurants, error, isLoading } = useQuery({
+    queryKey: ['restaurantsData', id],
+    queryFn: () => fetchAdminRestaurats(id),
+    staleTime: Infinity
+  })
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        `http://localhost:3000/api/v1/restaurants/admin/${id}`,
-      );
-      const responseData = await response.json();
-      const data = responseData.data;
-      // console.log(restaurantIdArray)
-      setRestaurants(data);
-    };
-    fetchData();
-  }, [id]);
+  const renderContent = (() => {
+    if (isLoading) {
+      return <div>Loading...</div>
+    }
 
- 
-  const mappedRestaurants = restaurants.map((restaurant) => {
-    return (
-      <Link to={`/admin/${id}/${restaurant._id}/menu`}
-        key={restaurant._id}
-        className="flex w-[300px] h-[300px] rounded-lg border border-zinc-200 p-3 flex-col hover:shadow-lg"
-      >
-        <RestaurantCard restaurantData={restaurant} />
-      </Link>
-    );
-  });
+    if (error) {
+      return <div>Error: {error.message}</div>
+    }
+
+    if(restaurants && restaurants.length > 0) {
+      return restaurants.map((restaurant) => {
+        return (
+          <Link to={`/admin/${id}/${restaurant._id}/menu`}
+            key={restaurant._id}
+            className="flex w-[300px] h-[300px] rounded-lg border border-zinc-200 p-3 flex-col hover:shadow-lg"
+          >
+            <RestaurantCard restaurantData={restaurant} />
+          </Link>
+        );
+      });
+    }
+  })()
+  
+ console.log(restaurants)
 
   return (
     <div className="flex font-inter justify-center flex-wrap p-3 gap-3 flex-col">
@@ -39,7 +44,7 @@ function AdminRestaurant() {
         Your Restaurants
       </p>
       <div className="flex justify-center flex-wrap p-3 gap-3">
-        {mappedRestaurants}
+        {renderContent}
       </div>
     </div>
   );

@@ -137,24 +137,27 @@ body,
 
 @layer base {
   /* html element goes here */
+  body {
+    @apply font-inter;
+  }
   button {
     /* making this applicable */
-    @apply bg-scarlet-400 font-poppins font-normal hover:bg-scarlet-500  transition duration-300 border-e-slate-50 bg-gradient-to-b  px-1 py-1 text-white rounded;
+    @apply bg-scarlet-400 font-inter font-normal hover:bg-scarlet-500  transition duration-300 border-e-slate-50 bg-gradient-to-b px-1 py-1 text-white rounded;
   }
   input {
-    @apply focus:outline-none border font-poppins font-light rounded-md md:rounded-lg py-2 px-2 sm:p-2 text-[14px] sm:text-base /*invalid:border-red-400*/;
+    @apply focus:outline-none border border-stone-300 font-inter rounded-md md:rounded-lg py-1.5 px-2 sm:py-1.5 sm:px-2 text-[14px] text-stone-600 sm:text-base /*invalid:border-red-400*/;
   }
 
   textarea {
-    @apply resize-y border font-poppins font-light rounded-md p-2 w-full max-w-2xl h-32 focus:outline-none  focus:ring-blue-500 focus:border-transparent focus:ring-1;
+    @apply resize-y border border-stone-300 font-inter font-light rounded-md py-1.5 px-2 w-full max-w-2xl h-32 focus:outline-none  focus:ring-blue-500 focus:border-transparent focus:ring-1;
   }
 
   select {
-    @apply p-0 m-0 rounded font-poppins font-normal text-xs;
+    @apply p-0 m-0 rounded font-inter font-normal text-xs border;
   }
 
   option {
-    @apply text-sm sm:text-base p-0 m-0;
+    @apply text-sm py-1.5 px-2 sm:text-base ;
   }
 
   h1 {

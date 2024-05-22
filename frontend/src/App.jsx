@@ -1,14 +1,12 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
-import MenuPage from "./pages/MenuPage";
+import UserMenu from "./components/user/UserMenu";
 import CreateRestaurant from "./components/admin/CreateRestaurant";
 import User from "./components/user/User";
 import Admin from "./components/admin/Admin";
 import AdminRestaurant from "./components/admin/AdminRestaurant";
-import CreateMenu from "./components/admin/CreateMenu";
 import AdminMenu from "./components/admin/AdminMenu";
 import MainLayout from "./components/common/MainLayout";
 function App() {
@@ -26,7 +24,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<SignupPage />} />
         <Route
-          path="/userRestaurnats"
+          path="/user/:userId/restaurants"
           element={
             <MainLayout>
               <User />
@@ -35,7 +33,7 @@ function App() {
         />
         S
         <Route
-          path="/admin"
+          path="/admin/:id"
           element={
             <MainLayout>
               <Admin />
@@ -43,39 +41,39 @@ function App() {
           }
         />
         <Route
-          path="/admin/restaurant"
+          path="/admin/restaurants/:id"
           element={
             <MainLayout>
-              <AdminRestaurant />{" "}
+              <AdminRestaurant />
             </MainLayout>
           }
         />
         <Route
-          path="/admin/menu"
+          path="/admin/:adminId/:restaurantId/menu"
           element={
             <MainLayout>
               <AdminMenu />
             </MainLayout>
           }
         />
-        <Route
-          path="/menu"
+        <Route // /user/${id}/${restaurant._id}/menu
+          path="/user/:id/:restaurantId/menu"
           element={
             <MainLayout>
-              <MenuPage />
+              <UserMenu />
             </MainLayout>
           }
         />
-        <Route
-          path="/createmenu"
+        {/* <Route
+          path="/admin/createmenu/:id"
           element={
             <MainLayout>
               <CreateMenu />
             </MainLayout>
           }
-        />
+        /> */}
         <Route
-          path="/createrestaurant"
+          path="/admin/createrestaurant/:id"
           element={
             <MainLayout>
               <CreateRestaurant />

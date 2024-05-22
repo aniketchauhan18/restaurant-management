@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function HomePage() {
   const cardDivClasses =
-    "flex flex-col bg-slate-50 bg-opacity-90 p-2 md:text-base rounded flex flex-col basis-1/3 justify-center";
+    "flex  font-inter flex-col bg-slate-50 bg-opacity-90 p-2 md:text-base rounded flex flex-col basis-1/3 justify-center";
 
   const readMoreClasses = "self-end px-3 py-1 bg-white flex ";
 
@@ -16,7 +16,7 @@ function HomePage() {
           />
         </div>
         <div className="flex flex-col basis-1/2 justify-center h-[400px] py-3">
-          <div className="flex px-2 font-poppins text-xs md:text-base">
+          <div className="flex px-2 font-inter text-xs md:text-base">
             Unlock the power of our restaurant app to showcase your
             establishment to a wide audience of hungry diners. With our
             easy-to-use platform, you can quickly upload your restaurant
