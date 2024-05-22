@@ -4,31 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 
 function User() {
   const [restaurants, setRestaurants] = useState([]);
-  /*
-    const indexRef = useRef()
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const userId = localStorage.getItem("userId")
-      const response = await fetch(`https://restaurantapp-7atz.onrender.com/api/v1/restaurants/admin/${userId}`)
-      const data  = await response.json();
-      console.log(data)
-      const restnts = data.restaurants;
-      const restaurantsId = restnts.map((restaurant) => restaurant._id)
-      const restaurantIdArray = [restaurantsId]
-      // console.log(restaurantIdArray)
-      setRestaurants(data.restaurants)
-      localStorage.setItem("restaurantsId", restaurantIdArray)
-    }
-    fetchData()
-  }, [])
-
-  const handleItemClick = (index) => {
-    indexRef.current = index
-    localStorage.setItem("currentRestaurant", index)
-  }
-  */
-
+  
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch("http://localhost:3000/api/v1/restaurants/");
