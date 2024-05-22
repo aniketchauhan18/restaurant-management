@@ -1,36 +1,26 @@
-import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { useNavigate, useParams } from "react-router-dom";
 
 function CreateRestaurantModal({ closeModal }) {
-  const [form, setForm] = useState({
-    name: "",
-    country: "",
-    state: "",
-    city: "",
-    address: "",
-    description: "",
-    number: "",
-    email: "",
-    websiteURL: "",
-  });
-
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const { id } = useParams()
+  const { id } = useParams();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
+    const formData = new FormData(e.target);
+    const obj = {
+      name: formData.get("name"),
+      country: formData.get("country"),
+      state: formData.get("state"),
+      city: formData.get("city"),
+      address: formData.get("address"),
+      description: formData.get("description"),
+      number: formData.get("number"),
+      email: formData.get("email"),
+      websiteURL: formData.get("websiteURL"),
+    };
     try {
-
       const jwtToken = localStorage.getItem("admin-token");
 
       const response = await fetch(
@@ -41,10 +31,10 @@ function CreateRestaurantModal({ closeModal }) {
             "Content-Type": "application/json",
             Authorization: `Bearer ${jwtToken}`,
           },
-          body: JSON.stringify(form),
+          body: JSON.stringify(obj),
         },
       );
-      const responseData = await response.json();
+      await response.json();
       if (response.ok) {
         console.log("yes");
         navigate(`/admin/restaurants/${id}`);
@@ -54,13 +44,17 @@ function CreateRestaurantModal({ closeModal }) {
     }
   };
 
-
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-75 p-4 z-50 font-inter flex justify-center flex-col items-center">
       <div className="flex flex-col bg-white p-5 rounded-lg">
         <div className="flex justify-between ml-2 border-b border-stone-400">
-          <p className="flex justify-center text-base sm:text-xl font-medium mb-2 text-stone-600">Create Restaurant</p>
-            <IoMdClose  className="hover:cursor-pointer text-xl text-stone-600" onClick={closeModal}/>
+          <p className="flex justify-center text-base sm:text-xl font-medium mb-2 text-stone-600">
+            Create Restaurant
+          </p>
+          <IoMdClose
+            className="hover:cursor-pointer text-xl text-stone-600"
+            onClick={closeModal}
+          />
         </div>
         <div className="p-1 mt-2">
           <form
@@ -69,62 +63,25 @@ function CreateRestaurantModal({ closeModal }) {
           >
             <div className="flex flex-col md:flex-row w-full justify-evenly gap-3">
               <div className="flex flex-col gap-3 basis-1/2">
-                <input
-                  placeholder="Restaurant Name"
-                  name="name"
-                  onChange={handleChange}
-                  required
-                />
-                <input
-                  placeholder="Country"
-                  name="country"
-                  onChange={handleChange}
-                  required
-                />
-                <input
-                  placeholder="State"
-                  onChange={handleChange}
-                  name="state"
-                  required
-                />
-                <input
-                  placeholder="City"
-                  onChange={handleChange}
-                  name="city"
-                  required
-                />
-                <input
-                  placeholder="Address"
-                  onChange={handleChange}
-                  name="address"
-                  required
-                />
-                <textarea
-                  placeholder="Description"
-                  name="description"
-                  onChange={handleChange}
-                />
+                <input placeholder="Restaurant Name" name="name" required />
+                <input placeholder="Country" name="country" required />
+                <input placeholder="State" name="state" required />
+                <input placeholder="City" name="city" required />
+                <input placeholder="Address" name="address" required />
+                <textarea placeholder="Description" name="description" />
               </div>
               <div className="flex flex-col basis-1/2 gap-3">
                 <input
                   placeholder="Number"
                   type="text"
                   name="number"
-                  onChange={handleChange}
                   required
                 />
-                <input
-                  placeholder="Email"
-                  type="email"
-                  name="email"
-                  onChange={handleChange}
-                  required
-                />
+                <input placeholder="Email" type="email" name="email" required />
                 <input
                   placeholder="Website URL (optional)"
                   type="text"
                   name="websiteURL"
-                  onChange={handleChange}
                 />
               </div>
             </div>

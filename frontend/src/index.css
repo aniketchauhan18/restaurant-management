@@ -157,7 +157,7 @@ body,
   }
 
   option {
-    @apply text-sm py-1.5 px-2 sm:text-base ;
+    @apply text-sm py-1.5 px-2 sm:text-base;
   }
 
   h1 {

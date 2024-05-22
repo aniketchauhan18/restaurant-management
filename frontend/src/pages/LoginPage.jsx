@@ -2,44 +2,36 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function LoginPage() {
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
   const [showPassword, setShowPassword] = useState(false);
   let navigate = useNavigate();
   const showPass = () => {
     setShowPassword((prev) => !prev);
   };
 
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const formData = new FormData(e.target);
+      const obj = {
+        email: formData.get("email"),
+        password: formData.get("password"),
+      };
       const response = await fetch("http://localhost:3000/api/v1/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify(obj),
       });
 
       const responseData = await response.json();
       const data = responseData.data;
-      console.log(data)
-      console.log(data)
-      if (data.role === 'admin') {
-        localStorage.setItem('admin-token', data.jwtToken)
-        localStorage.setItem('userId', data._id)
+      if (data.role === "admin") {
+        localStorage.setItem("admin-token", data.jwtToken);
+        localStorage.setItem("userId", data._id);
       } else {
-        localStorage.setItem('user-token', data.jwtToken)
-        localStorage.setItem('userId', data._id)
+        localStorage.setItem("user-token", data.jwtToken);
+        localStorage.setItem("userId", data._id);
       }
 
       if (!response.ok) {
@@ -75,7 +67,6 @@ function LoginPage() {
                 name="email"
                 required
                 placeholder="aniket@gmail.com"
-                onChange={handleChange}
                 className="peer w-full"
               />
               <p className="peer-invalid:visible invisible text-xs text-red-500 ml-1">
@@ -89,7 +80,6 @@ function LoginPage() {
                 name="password"
                 placeholder="Password"
                 className="w-full md:text-base"
-                onChange={handleChange}
               />
               <span className="ml-1 text-zinc-600 text-xs sm:text-sm flex gap-2">
                 Show Password{" "}
@@ -108,7 +98,10 @@ function LoginPage() {
           </form>
           <div className="flex justify-center text-sm md:text-base gap-1 pt-1 pb-3">
             <p className="text-xs md:text-sm">New User ?</p>
-            <Link to={'/register'} className="text-xs md:text-sm flex justify-center text-scarlet-600">
+            <Link
+              to={"/register"}
+              className="text-xs md:text-sm flex justify-center text-scarlet-600"
+            >
               Register
             </Link>
           </div>

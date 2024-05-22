@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import RestaurantCard from '../common/RestaurantCard'
-import { Link, useParams } from 'react-router-dom'
+import RestaurantCard from "../common/RestaurantCard";
+import { Link, useParams } from "react-router-dom";
 
 function User() {
   const [restaurants, setRestaurants] = useState([]);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch("http://localhost:3000/api/v1/restaurants/");
@@ -15,12 +15,12 @@ function User() {
     fetchData();
   }, []);
 
-  const { id } = useParams()
+  const { id } = useParams();
 
   const mappedRestaurants = restaurants.map((restaurant) => {
     return (
       <Link
-      to={`/user/${id}/${restaurant._id}/menu`}
+        to={`/user/${id}/${restaurant._id}/menu`}
         key={restaurant._id}
         className="flex basis-1/5 transition duration-200 border border-zinc-100 ease-in-out hover:shadow rounded p-3 flex-col restaurant-card h-auto"
       >

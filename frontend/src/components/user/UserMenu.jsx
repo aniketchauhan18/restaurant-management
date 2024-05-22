@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 import UserMenuCard from "./UserMenuCard";
-import { useQuery } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query";
 import { fetchUserMenu } from "../../api/dataFetcher";
 
 function UserMenu() {
-  const { restaurantId } = useParams()
+  const { restaurantId } = useParams();
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -20,10 +20,14 @@ function UserMenu() {
   //   };
   //   fetchData();
   // }, [restaurantId]);
-  const { data: menuData , error, isLoading } = useQuery({
-    queryKey: ['menuData', restaurantId],
+  const {
+    data: menuData,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ["menuData", restaurantId],
     queryFn: () => fetchUserMenu(restaurantId),
-    staleTime: Infinity
+    staleTime: Infinity,
   });
 
   const renderContent = (() => {
@@ -38,21 +42,23 @@ function UserMenu() {
     if (menuData && menuData.length > 0) {
       return menuData.map((menu) => (
         <div key={menu._id} className="flex">
-          <UserMenuCard name={menu.name} price={menu.price} description={menu.description} />
+          <UserMenuCard
+            name={menu.name}
+            price={menu.price}
+            description={menu.description}
+          />
         </div>
       ));
     }
 
     return <div>No menu Added</div>;
-  })()
+  })();
 
   return (
     <div className="flex font-inter flex-col h-dvh bg-cover bg-center">
       <div className="w-full mt-4 flex">
         <div className="flex justify-center items-center flex-wrap p-3 gap-3">
-          <div>
-            {renderContent}
-          </div>
+          <div>{renderContent}</div>
         </div>
       </div>
     </div>

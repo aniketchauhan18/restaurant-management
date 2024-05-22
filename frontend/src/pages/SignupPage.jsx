@@ -2,51 +2,23 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 function SignupPage() {
-  const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    role: "user",
-    email: "",
-    password: "",
-  });
-
-  const [showPassword, setShowPassword] = useState(false);
-  const inputClasses = "border-b p-2 text-base";
   const navigate = useNavigate();
-
-  // const onSubmit = async () => {
-  //   try {
-  //     const response = await fetch('http://localhost:3000/api/v1/users/login', {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       },
-  //       body: JSON.stringify(formData)
-  //     })
-  //     const data = await response.json()
-  //     console.log(data.message);
-  //     // const { data } = await axios.post('http://localhost:3000/api/v1/users/register', formData )
-
-  //     // console.log(data.message)
-  //   } catch (error) {
-  //     console.log(error.message)
-  //   }
-  // }
-
+  const [showPassword, setShowPassword] = useState(false);
   const showPass = () => {
     setShowPassword((prev) => !prev);
   };
 
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
+    const formData = new FormData(e.target);
+    const obj = {
+      firstName: formData.get("firstName"),
+      lastName: formData.get("lastName"),
+      role: formData.get("role"),
+      email: formData.get("firstName"),
+      password: formData.get("password"),
+    };
+    console.log(obj);
     try {
       const response = await fetch(
         "http://localhost:3000/api/v1/users/register",
@@ -55,7 +27,7 @@ function SignupPage() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(form),
+          body: JSON.stringify(obj),
         },
       );
       const data = await response.json();
@@ -69,6 +41,7 @@ function SignupPage() {
     }
   };
 
+  const inputClasses = "border-b p-2 text-base";
   return (
     <div className="flex font-inter w-full h-screen justify-center items-center">
       <div className="flex flex-col sm:flex-row w-3/4 justify-center">
@@ -88,22 +61,10 @@ function SignupPage() {
                 type="text"
                 name="firstName"
                 placeholder="Firstname"
-                onChange={handleChange}
                 required
               />
-              <input
-                className=""
-                onChange={handleChange}
-                name="lastName"
-                placeholder="Lastname"
-                type="text"
-              />
-              <select
-                className={inputClasses}
-                name="role"
-                required
-                onChange={handleChange}
-              >
+              <input name="lastName" placeholder="Lastname" type="text" />
+              <select className={inputClasses} name="role" required>
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
               </select>
@@ -114,15 +75,12 @@ function SignupPage() {
                   placeholder="aniket@gmail.com"
                   className="peer"
                   name="email"
-                  onChange={handleChange}
                 />
                 <p className="invisible text-red-500 peer-invalid:visible peer-focus:invisible ml-1 text-xs">
                   Must be a valid email address
                 </p>
               </div>
               <input
-                className=""
-                onChange={handleChange}
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Password"
