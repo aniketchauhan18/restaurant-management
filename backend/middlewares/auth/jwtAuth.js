@@ -11,10 +11,11 @@ const jwtAuth = (req, res, next) => {
       })
     }
 
+    console.log(bearer)
     const [b, token] = bearer.split(" ");
     console.log(b)
     if (!token) {
-      return res.status(401).josn({
+      return res.status(401).json({
         message: "Token not found"
       })
     }
@@ -22,7 +23,7 @@ const jwtAuth = (req, res, next) => {
     const user = jwt.verify(token, process.env.SECRET_KEY);
     if (!user) {
       return res.status(401).json({
-        error: "Unauthourized access"
+        error: "Unauthorized access"
       })
     }
     req.user = user;

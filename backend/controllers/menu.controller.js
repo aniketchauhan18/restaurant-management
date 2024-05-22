@@ -1,11 +1,12 @@
 const { menuExists, menuCreate, menuDelete, menuUpdate, menuFind  } = require('../utils/adminUtils/menuUtils');
-const { entityAlreadyExists, entityCreatedSuccessfully, entityNotExist, InvalidRequestBody, InternalServerError, entityDeletedSucessfully, sendEntityReponse,entityUpdatedSuccessfully } = require('../utils/errorResponse')
+const { entityAlreadyExists, entityCreatedSuccessfully, entityNotExist, InvalidRequestBody, InternalServerError, entityDeletedSucessfully, sendEntityResponse,entityUpdatedSuccessfully } = require('../utils/errorResponse')
 
 const createMenu = async (req, res) => {
   try {
     
     const restaurantId = req.params.restaurantId;
     const { menuValidatedData } = req
+    console.log("createMenu")
   
     const menuExist = await menuExists(menuValidatedData.name)
 
