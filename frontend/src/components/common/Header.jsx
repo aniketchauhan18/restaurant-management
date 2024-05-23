@@ -22,7 +22,7 @@ function Header({ isLoggedIn, adminRestaurant }) {
   };
   
   const userId = localStorage.getItem("userId");
-  const restaurantPath = isLoggedIn
+  const restaurantPath = showLogout
     ? adminRestaurant
       ? `/admin/restaurants/${userId}`
       : `/user/${userId}/restaurants`
