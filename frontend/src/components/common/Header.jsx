@@ -1,42 +1,32 @@
-import { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-function Header() {
-  // const [showLogin , setShowLogin] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [adminRestaurant, setAdminRestaurant] = useState(false);
+function Header({ isLoggedIn, adminRestaurant }) {
+  const [showLogout , setShowLogout] = useState(isLoggedIn);
+  const navigate = useNavigate();
 
   const linkClasses =
     "text-scarlet-400 py-1 px-1 hover:text-scarlet-500 transition ease-in-out duration-300 font-inter nav-links";
-
-  let userRoleRef = useRef();
+  
   useEffect(() => {
-    setAdminRestaurant(false);
-    setIsLoggedIn(false);
-    console.log(localStorage.getItem("admin-token"));
-    if (localStorage.getItem("admin-token")) {
-      userRoleRef.current = "admin";
-      setAdminRestaurant(true);
-      setIsLoggedIn(true);
-    }
-    if (localStorage.getItem("user-token")) {
-      userRoleRef.current = "user";
-      setAdminRestaurant(false);
-      setIsLoggedIn(true);
-    }
-  }, []);
+    setShowLogout(isLoggedIn);
+  }, [isLoggedIn]);
 
   const handleLogout = () => {
     localStorage.removeItem("jwtToken");
-    setIsLoggedIn(false);
+    localStorage.removeItem("admin-token");
+    localStorage.removeItem("user-token");
+    localStorage.removeItem("userId");
+    setShowLogout(false);
+    navigate('/')
   };
+  
   const userId = localStorage.getItem("userId");
   const restaurantPath = isLoggedIn
     ? adminRestaurant
       ? `/admin/restaurants/${userId}`
       : `/user/${userId}/restaurants`
     : "/login";
-  console.log(restaurantPath);
 
   return (
     <div className="flex justify-center mb-10">
@@ -52,19 +42,18 @@ function Header() {
             <Link className={linkClasses} to={restaurantPath}>
               Restaurants
             </Link>
-            <Link className={linkClasses} to={"/login"}>
-              LogIn
-            </Link>
-            <Link className={linkClasses} to={"/register"}>
+            {showLogout || <Link className={linkClasses} to={"/register"}>
               SignUp
-            </Link>
-            {/* <div className="flex justify-center">
-            {isLoggedIn &&
+            </Link>}
+            <div className="flex justify-center">
+            {showLogout ?
               <Link to={'/'} onClick={handleLogout} className={linkClasses}>
                 Logout
-              </Link>
+              </Link> : <Link className={linkClasses} to={"/login"}>
+              LogIn
+            </Link>
             }
-          </div> */}
+          </div>
           </div>
         </div>
       </nav>

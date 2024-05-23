@@ -26,12 +26,13 @@ function LoginPage() {
 
       const responseData = await response.json();
       const data = responseData.data;
+      console.log(data)
       if (data.role === "admin") {
         localStorage.setItem("admin-token", data.jwtToken);
-        localStorage.setItem("userId", data._id);
+        localStorage.setItem("userId", data.userId);
       } else {
         localStorage.setItem("user-token", data.jwtToken);
-        localStorage.setItem("userId", data._id);
+        localStorage.setItem("userId", data.userId);
       }
 
       if (!response.ok) {
