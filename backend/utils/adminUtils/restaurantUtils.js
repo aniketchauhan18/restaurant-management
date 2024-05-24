@@ -18,8 +18,18 @@ const findRestaurant = async () => {
   return restaurant
 }
 
+const findRestaurantById = async (id) => {
+  const restaurant = await Restaurant.findById(id)
+  return restaurant
+}
+
+const findRestaurantByUserId = async (userId) => {
+  const restaurant = await Restaurant.find({userId: userId})
+  return restaurant
+}
+
 const restaurantUpdate = async (id , data) => {
-  const updatedRestaurant = await Restaurant.findOneAndUpdate(id, data, {runValidators: true})
+  const updatedRestaurant = await Restaurant.findOneAndUpdate({_id: id}, data, {runValidators: true})
   return updatedRestaurant
 }
 
@@ -32,6 +42,8 @@ module.exports = {
   restaurantExists,
   createRestaurant,
   findRestaurant,
+  findRestaurantById,
+  findRestaurantByUserId,
   restaurantUpdate,
   restaurantDelete
 }

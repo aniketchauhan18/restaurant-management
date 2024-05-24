@@ -1,5 +1,5 @@
 const Restaurant = require('../models/restaurant.models');
-const { restaurantExists, createRestaurant, findRestaurant, restaurantUpdate, restaurantDelete} = require('../utils/adminUtils/restaurantUtils');
+const { restaurantExists, createRestaurant, findRestaurant, restaurantUpdate, restaurantDelete, findRestaurantByUserId, findRestaurantById} = require('../utils/adminUtils/restaurantUtils');
 const { entityAlreadyExists, entityCreatedSuccessfully, entityNotExist, InvalidRequestBody, InternalServerError, entityDeletedSucessfully, sendEntityResponse } = require('../utils/errorResponse')
 
 const register = async (req, res) => {
@@ -33,12 +33,25 @@ const getRestaurant = async ( req, res ) => {
   }
 }
 
-const getRestaurantById = async (req, res) => {
+const getRestaurantByUserId = async (req, res) => {
   try {
-    const restaurants = await findRestaurant(req.params.id)
+    const id = req.params.id
+    console.log(id)
+    const restaurants = await findRestaurantByUserId(req.params.id)
     if (!restaurants) return entityNotExist(res, "Restaurant")
     return sendEntityResponse(res, restaurants)
   } catch(err) {
+    console.log(err)
+    return InternalServerError(res)
+  }
+}
+
+const getRestaurantById = async (req, res) => {
+  try {
+    const restaurant = await findRestaurantById(req.params.id)
+    if (!restaurant) return entityNotExist(res, "Restaurant")
+      return sendEntityResponse(res, restaurant)
+  } catch (err) {
     console.log(err)
     return InternalServerError(res)
   }
@@ -72,6 +85,7 @@ const deleteRestaurant = async (req, res) => {
 module.exports = {
   register,
   getRestaurantById,
+  getRestaurantByUserId,
   deleteRestaurant,
   updateRestaurant,
   getRestaurant

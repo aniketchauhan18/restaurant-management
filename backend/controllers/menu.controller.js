@@ -38,11 +38,14 @@ const getMenu = async (req, res) => {
 
 const upadteMenu = async (req, res) => {
   try {
+    console.log('isnide updatemenu')
+    console.log(req.params.menuId)
     const data = req.body;
     const menu = await menuFind(req.params.menuId);
     if (!menu) return entityNotExist(res, "Menu")
-
-    const updatedMenu = await menuUpdate(menu._id, data)
+    console.log(data)
+    const updatedMenu = await menuUpdate(req.params.menuId, data)
+    console.log(updatedMenu)
 
     if (!updatedMenu) return entityNotExist(res, "Menu")
     return entityUpdatedSuccessfully(res, "Menu")

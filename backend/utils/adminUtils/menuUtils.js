@@ -17,7 +17,11 @@ const menuFind = async(restaurantId) => {
 }
 
 const menuUpdate = async(id, data) => {
-  const updatedMenu = await Menu.findOne(id, data, {runValidators: true})
+  const updatedMenu = await Menu.findOneAndUpdate({_id: id}, data, {new: true, runValidators: true})
+  console.log(';;;;;;;')
+  console.log(updatedMenu)
+  console.log(';;;;;;;')
+
   return updatedMenu
 }
 
