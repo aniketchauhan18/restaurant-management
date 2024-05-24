@@ -36,7 +36,7 @@ const getMenu = async (req, res) => {
   }
 }
 
-const upadteMenu = async (req, res) => {
+const updateMenu = async (req, res) => {
   try {
     console.log('isnide updatemenu')
     console.log(req.params.menuId)
@@ -46,7 +46,6 @@ const upadteMenu = async (req, res) => {
     console.log(data)
     const updatedMenu = await menuUpdate(req.params.menuId, data)
     console.log(updatedMenu)
-
     if (!updatedMenu) return entityNotExist(res, "Menu")
     return entityUpdatedSuccessfully(res, "Menu")
 
@@ -60,9 +59,7 @@ const deleteMenu = async(req, res) => {
   try {
     const deleteMenu = await menuDelete(req.params.menuId); // finding menu by id and deleting id
     if (!deleteMenu) return entityNotExist(res, "Menu")
-
     return entityDeletedSucessfully(res, "Menu")
-
   } catch (error) {
     console.log("Error in deleteMenu: ", error)
   }
@@ -70,7 +67,7 @@ const deleteMenu = async(req, res) => {
 
 module.exports = {
   createMenu,
-  upadteMenu,
+  updateMenu,
   deleteMenu,
   getMenu
 }
