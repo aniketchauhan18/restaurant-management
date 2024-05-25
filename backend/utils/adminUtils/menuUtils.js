@@ -1,7 +1,7 @@
 const Menu = require('../../models/menu.models')
 
-const menuExists = async(name) => {
-  const menu = await Menu.findOne({name});
+const menuExists = async(name, restaurantId) => {
+  const menu = await Menu.findOne({ $and: [{ restaurantId: restaurantId }, { name: name }] }) //this query ensures that the document returned must satisfy both conditions
   if (menu) return true
   return false
 }
@@ -23,6 +23,7 @@ const menuUpdate = async(id, data) => {
 
 const menuDelete = async(id) => {
   const deletedMenu = await Menu.findByIdAndDelete(id)
+  console.log(deletedMenu)
   return deletedMenu
 }
 

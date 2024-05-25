@@ -8,7 +8,7 @@ const createMenu = async (req, res) => {
     const { menuValidatedData } = req
     console.log("createMenu")
   
-    const menuExist = await menuExists(menuValidatedData.name)
+    const menuExist = await menuExists(menuValidatedData.name, restaurantId)
 
     console.log(menuExist)
 
@@ -57,6 +57,7 @@ const updateMenu = async (req, res) => {
 
 const deleteMenu = async(req, res) => {
   try {
+    console.log('ionside delete menu')
     const deleteMenu = await menuDelete(req.params.menuId); // finding menu by id and deleting id
     if (!deleteMenu) return entityNotExist(res, "Menu")
     return entityDeletedSucessfully(res, "Menu")
