@@ -6,7 +6,7 @@ function Header({ isLoggedIn, adminRestaurant }) {
   const navigate = useNavigate();
 
   const linkClasses =
-    "text-scarlet-400 py-1 px-1 hover:text-scarlet-500 transition ease-in-out duration-300 font-inter nav-links";
+    "text-scarlet-400 py-1 px-1 hover:text-scarlet-500 transition ease-in-out duration-300 font-inter nav-links text-sm sm:text-base";
   
   useEffect(() => {
     setShowLogout(isLoggedIn);
@@ -29,11 +29,11 @@ function Header({ isLoggedIn, adminRestaurant }) {
     : "/login";
 
   return (
-    <div className="flex justify-center mb-10">
-      <nav className="flex px-3 items-center w-full h-12 border-b py-4  border border-zinc-200 rounded-full m-5 justify-between">
+    <header className="flex justify-center">
+      <nav className="flex rounded-full border px-3 items-center w-full h-12 py-4 bg-white/50 backdrop-blur  bg-opacity-45 m-5 justify-between">
         <Link
           to={"/"}
-          className="font-poppins text-2xl restaurant-heading flex justify-center items-center"
+          className="font-inter font-medium text-xl ml-2 text-stone-700 restaurant-heading flex justify-center items-center"
         >
           Restaurant
         </Link>
@@ -43,21 +43,21 @@ function Header({ isLoggedIn, adminRestaurant }) {
               Restaurants
             </Link>
             {showLogout || <Link className={linkClasses} to={"/register"}>
-              SignUp
+              Signup
             </Link>}
             <div className="flex justify-center">
             {showLogout ?
               <Link to={'/'} onClick={handleLogout} className={linkClasses}>
                 Logout
               </Link> : <Link className={linkClasses} to={"/login"}>
-              LogIn
+              Login
             </Link>
             }
           </div>
           </div>
         </div>
       </nav>
-    </div>
+    </header>
   );
 }
 

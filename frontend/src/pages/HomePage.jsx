@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 function HomePage() {
   const cardDivClasses =
-    "flex  font-inter flex-col bg-slate-50 bg-opacity-90 p-2 md:text-base rounded flex flex-col basis-1/3 justify-center";
+    "flex font-inter backdrop-blur p-3 bg-stone-100/20 flex-col rounded md:text-base flex flex-col justify-center";
 
-  const readMoreClasses = "self-end px-3 py-1 bg-white flex ";
+  const readMoreClasses = "self-end text-sm hover:text-stone-500 duration-300 mt-2";
 
   return (
     <div className="m-5 text-sm">
@@ -16,7 +16,7 @@ function HomePage() {
           />
         </div>
         <div className="flex flex-col basis-1/2 justify-center h-[400px] py-3">
-          <div className="flex px-2 font-inter text-xs md:text-base">
+          <div className="flex px-2 font-inter text-sm md:text-base">
             Unlock the power of our restaurant app to showcase your
             establishment to a wide audience of hungry diners. With our
             easy-to-use platform, you can quickly upload your restaurant
@@ -30,10 +30,10 @@ function HomePage() {
           </div>
         </div>
       </div>
-      <div className="flex flex-row gap-3 justify-between parent-cards-hp">
+      <div className="flex flex-row justify-between  parent-cards-hp gap-3 text-stone-700  p-3 rounded-lg">
         <div className={cardDivClasses}>
-          <p className="text-xl font-medium">Menu Management</p>
-          <p>
+          <p className="text-lg font-medium">Menu Management</p>
+          <p className="text-sm">
             Effortlessly manage and update your restaurants menu. Showcase your
             culinary creations with precision and keep your customers informed
             about the latest offerings.
@@ -43,8 +43,8 @@ function HomePage() {
           </Link>
         </div>
         <div className={cardDivClasses}>
-          <p className="text-xl font-medium">Menu Management</p>
-          <p>
+          <p className="text-lg font-medium">Menu Management</p>
+          <p className="text-sm">
             Effortlessly manage and update your restaurants menu. Showcase your
             culinary creations with precision and keep your customers informed
             about the latest offerings.
@@ -52,8 +52,8 @@ function HomePage() {
           <Link className={readMoreClasses}>Read more</Link>
         </div>
         <div className={cardDivClasses}>
-          <p className="text-xl font-medium">Menu Management</p>
-          <p>
+          <p className="text-lg font-medium">Menu Management</p>
+          <p className="text-sm">
             Effortlessly manage and update your restaurants menu. Showcase your
             culinary creations with precision and keep your customers informed
             about the latest offerings.

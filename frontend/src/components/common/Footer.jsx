@@ -3,24 +3,55 @@ import { IoLogoGithub, IoLogoLinkedin } from "react-icons/io";
 import { RiTwitterXFill } from "react-icons/ri";
 
 function Footer() {
-  const linkClasses = "text-2xl transform  duration-200 hover:scale-110";
+  const linkClasses = "text-xl text-zinc-700 transform  duration-200 hover:scale-110";
+
+  const footerLinkClasses = "text-xs text-zinc-700"
+
+  const headingClasses = "text-sm sm:text-base font-medium sm:tracking-wide"
 
   return (
-    <footer className="flex flex-col font-inter mt-16 sm:mt-10">
-      <div className="flex flex-col">
-        <div className="flex justify-evenly md:self-start md:gap-10 md:pl-5">
-          <Link>
-            <IoLogoGithub className={linkClasses} />
-          </Link>
-          <Link className={linkClasses}>
-            <IoLogoLinkedin />
-          </Link>
-          <Link className={linkClasses}>
-            <RiTwitterXFill />
-          </Link>
+    <footer className="flex flex-col bottom-0 font-inter mt-16 sm:mt-10 bg-zinc-300/20 p-3">
+      <div className="flex flex-col sm:flex-row gap-3">
+        <div className="flex justify-between ml-2 mr-2 sm:w-1/2">
+          <div className="flex flex-col w-1/2 sm:gap-1">
+            <p className={headingClasses}>ABOUT US</p>
+            <Link className={footerLinkClasses}>Who We Are</Link>
+            <Link className={footerLinkClasses}>Blog</Link>
+            <Link className={footerLinkClasses}>Work with us</Link>
+            <Link className={footerLinkClasses}>Contact Us</Link>
+          </div>
+          <div className="flex flex-col w-1/2 sm:gap-1">
+            <p className={headingClasses}>FOR RESTAURANTS</p>
+            <Link className={footerLinkClasses}>Partner With Us</Link>
+            <Link className={footerLinkClasses}>Features For You</Link>
+          </div>
+        </div>
+        <div className="flex justify-between ml-2 mr-2 sm:w-1/2">
+          <div className="flex flex-col sm:gap-1">
+            <p className={headingClasses}>LEARN MORE</p>
+            <Link className={footerLinkClasses}>Privacy</Link>
+            <Link className={footerLinkClasses}>Security</Link>
+            <Link className={footerLinkClasses}>Terms</Link>
+          </div>
+          <div className="flex flex-col w-1/2">
+            <div className="flex flex-col sm:gap-1">
+              <p className={headingClasses}>SOCIAL LINKS</p>
+              <div className="flex gap-4">
+                <a href="https://github.com/aniketchauhan18/restaurant-management" target="_blank" rel="noopener noreferrer" className={linkClasses}>
+                  <IoLogoGithub  />
+                </a>
+                <a href="https://www.linkedin.com/in/aniketchauhan18/" target="_blank" className={linkClasses} >
+                  <IoLogoLinkedin />
+                </a>
+                <a href="https://x.com/aniket_chn18" target="_blank" className={linkClasses}>
+                  <RiTwitterXFill />
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <small className="flex justify-center my-3 text-sm">
+      <small className="flex justify-center text-sm mt-5 text-zinc-800">
         Made with ❤️ by Aniket Chauhan
       </small>
     </footer>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import RestaurantCard from "../common/RestaurantCard";
+import UserRestaurantCard from "./UserRestaurantCard";
 import { Link, useParams } from "react-router-dom";
 
 function User() {
@@ -24,7 +24,7 @@ function User() {
         key={restaurant._id}
         className="flex basis-1/5 transition duration-200 border border-zinc-100 ease-in-out hover:shadow rounded p-3 flex-col restaurant-card h-auto"
       >
-        <RestaurantCard restaurantData={restaurant} />
+        <UserRestaurantCard restaurantData={restaurant} />
       </Link>
     );
   });

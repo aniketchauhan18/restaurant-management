@@ -5,13 +5,12 @@ import { useQuery } from "@tanstack/react-query";
 import CreateMenuModal from "./CreateMenuModal";
 import AdminMenuCard from "./AdminMenuCard";
 
-function MenuPage() {
+function AdminMenu() {
   const [showMenuModal, setShowMenuModal] = useState(false);
   const { adminId, restaurantId } = useParams();
   console.log(restaurantId);
 
   const navigate = useNavigate();
-
   const {
     data: menuData,
     error,
@@ -21,7 +20,7 @@ function MenuPage() {
     queryFn: () => fetchMenuData(restaurantId),
     staleTime: Infinity,
   });
-
+  console.log(menuData)
   const renderContent = (() => {
     if (isLoading) {
       return <div>Loading...</div>;
@@ -38,6 +37,7 @@ function MenuPage() {
             name={menu.name}
             price={menu.price}
             description={menu.description}
+            menuId={menu._id}
           />
         </div>
       ));
@@ -58,25 +58,36 @@ function MenuPage() {
   console.log(adminId, restaurantId);
 
   return (
-    <div className="flex font-inter flex-col h-dvh bg-cover bg-center">
-      <div className="w-full mt-4 flex justify-center sm:justify-normal">
-        <div className="flex flex-col justify-center p-3 gap-3">
-          <div className="w-full flex flex-col flex-wrap justify-evenly sm:flex-row gap-2">
+    <div className="flex font-inter flex-col bg-gray-50 min-h-screen mx-8 p-3">
+      <div className="flex justify-between">
+        <p className="text-3xl ml-4">
+          Menus
+        </p>
+        <button
+          onClick={() => setShowMenuModal(true)}
+          className={linkClasses}
+        >
+          Add Menu
+        </button>
+      </div>
+      <div className="w-full mt-4 flex">
+        <div className="flex flex-col  gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 p-3 max-w-full">
             {renderContent}
           </div>
-          <div className="flex">
+          {/* <div className="flex ml-3">
             <button
               onClick={() => setShowMenuModal(true)}
               className={linkClasses}
             >
               Add Menu
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
-      <div>{showMenuModal && <CreateMenuModal closeModal={closeModal} />}</div>
+      <div>{showMenuModal && <CreateMenuModal closeModal={closeModal}/>}</div>
     </div>
   );
 }
 
-export default MenuPage;
+export default AdminMenu;

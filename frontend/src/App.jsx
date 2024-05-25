@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
@@ -6,12 +7,14 @@ import UserMenu from "./components/user/UserMenu";
 import CreateRestaurant from "./components/admin/CreateRestaurant";
 import User from "./components/user/User";
 import Admin from "./components/admin/Admin";
-import AdminRestaurant from "./components/admin/AdminRestaurant";
+import AdminRestaurants from "./components/admin/AdminRestaurants";
 import AdminMenu from "./components/admin/AdminMenu";
 import MainLayout from "./components/common/MainLayout";
+import AdminRestaurant from "./components/admin/AdminRestaurant";
 function App() {
+  const clientId = '680449140889-81vr6en7jh7esto3g5r7bloevevif989.apps.googleusercontent.com'
   return (
-    <div>
+    <GoogleOAuthProvider clientId={clientId}>
       <Routes>
         <Route
           path="/"
@@ -44,7 +47,7 @@ function App() {
           path="/admin/restaurants/:id"
           element={
             <MainLayout>
-              <AdminRestaurant />
+              <AdminRestaurants />
             </MainLayout>
           }
         />
@@ -52,7 +55,7 @@ function App() {
           path="/admin/:adminId/:restaurantId/menu"
           element={
             <MainLayout>
-              <AdminMenu />
+              <AdminRestaurant />
             </MainLayout>
           }
         />
@@ -65,10 +68,10 @@ function App() {
           }
         />
         {/* <Route
-          path="/admin/createmenu/:id"
+          path="/222"
           element={
             <MainLayout>
-              <CreateMenu />
+              <AdminRestaurant />
             </MainLayout>
           }
         /> */}
@@ -81,7 +84,7 @@ function App() {
           }
         />
       </Routes>
-    </div>
+    </GoogleOAuthProvider>
   );
 }
 

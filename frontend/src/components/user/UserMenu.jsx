@@ -56,9 +56,11 @@ function UserMenu() {
 
   return (
     <div className="flex font-inter flex-col h-dvh bg-cover bg-center">
-      <div className="w-full mt-4 flex">
-        <div className="flex justify-center items-center flex-wrap p-3 gap-3">
-          <div>{renderContent}</div>
+      <div className="w-full mt-4 flex justify-center">
+        <div className="flex justify-center items-center p-3 gap-3 w-full">
+          <div className="flex flex-col flex-wrap sm:flex-row justify-center  gap-3">
+            {renderContent}
+          </div>
         </div>
       </div>
     </div>

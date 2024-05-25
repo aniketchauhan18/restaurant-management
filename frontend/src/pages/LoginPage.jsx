@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode'
 
 function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -47,6 +49,20 @@ function LoginPage() {
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const handleSuccess = (credentialResponse) => {
+    // Handle the successful login here
+    const decoded = jwtDecode(credentialResponse.credential);
+    console.log(decoded)
+    const email = decoded.email;
+    console.log("User email:", email);
+    navigate('/')
+  };
+
+  const handleError = () => {
+    // Handle login errors here
+    console.log('Google login failed');
   };
 
   return (
@@ -105,6 +121,13 @@ function LoginPage() {
             >
               Register
             </Link>
+          </div>
+          <div className="flex justify-center w-full mb-5">
+            <GoogleLogin 
+              onSuccess={handleSuccess}
+              onError={handleError}
+              text="hhh"
+            />
           </div>
         </div>
       </div>

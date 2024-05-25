@@ -23,11 +23,11 @@ function MainLayout({ children }) {
   }, []);
 
   return (
-    <>
+    <div>
       <Header isLoggedIn={isLoggedIn} adminRestaurant={adminRestaurant}/>
       {children}
       <Footer />
-    </>
+    </div>
   );
 }
 

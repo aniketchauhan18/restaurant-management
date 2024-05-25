@@ -1,4 +1,4 @@
-function RestaurantCard({ restaurantData }) {
+function UserRestaurantCard({ restaurantData }) {
   const {
     name,
     _id,
@@ -26,4 +26,4 @@ function RestaurantCard({ restaurantData }) {
   );
 }
 
-export default RestaurantCard;
+export default UserRestaurantCard;
