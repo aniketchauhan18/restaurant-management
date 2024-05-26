@@ -9,7 +9,8 @@ const restaurantValidationSchema = zod.object({
   description: zod.string(),
   number: zod.string(),
   email: zod.string(),
-  websiteURL: zod.string()
+  websiteURL: zod.string(),
+  imageUrls: zod.array(zod.string()).optional()
 })
 
 module.exports = restaurantValidationSchema;

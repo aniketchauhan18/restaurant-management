@@ -42,6 +42,9 @@ const restaurantSchema = new mongoose.Schema({
   websiteURL: {
     type: String
   },
+  imageUrls: {
+    type: [String]
+  }
 }, {
   timestamps: true
 })
