@@ -30,7 +30,7 @@ function Header({ isLoggedIn, adminRestaurant }) {
 
   return (
     <header className="flex justify-center">
-      <nav className="flex rounded-full border px-3 items-center w-full h-12 py-4 bg-white/50 backdrop-blur  bg-opacity-45 m-5 justify-between">
+      <nav className="flex rounded-md px-3 items-center w-full h-12 py-4 bg-gray-100/50 backdrop-blur  bg-opacity-45 m-5 justify-between">
         <Link
           to={"/"}
           className="font-inter font-medium text-xl ml-2 text-stone-700 restaurant-heading flex justify-center items-center"

@@ -11,6 +11,7 @@ import AdminRestaurants from "./components/admin/AdminRestaurants";
 import AdminMenu from "./components/admin/AdminMenu";
 import MainLayout from "./components/common/MainLayout";
 import AdminRestaurant from "./components/admin/AdminRestaurant";
+import ImgUpload from "./pages/ImgUpload";
 function App() {
   const clientId = '680449140889-81vr6en7jh7esto3g5r7bloevevif989.apps.googleusercontent.com'
   return (
@@ -80,6 +81,14 @@ function App() {
           element={
             <MainLayout>
               <CreateRestaurant />
+            </MainLayout>
+          }
+        />
+        <Route 
+          path="/imgup"
+          element={
+            <MainLayout>
+              <ImgUpload />
             </MainLayout>
           }
         />
