@@ -98,8 +98,8 @@ Certainly! Here's an updated section for admin signup:
 6. Log in with your admin credentials.
 7. Access the admin dashboard to manage restaurants and menus.
 
-![image](https://github.com/aniketchauhan18/restaurant-management/assets/132349103/5a7492ee-7338-4d43-89fe-4c74a5eaf449)
-![image](https://github.com/aniketchauhan18/restaurant-management/assets/132349103/4a18bf8a-dff2-48cb-9209-00ff4520204b)
+![image](https://github.com/aniketchauhan18/restaurant-management/assets/132349103/c74c14ec-b6e1-45f7-bd24-1211a94b07f1)
+![image](https://github.com/aniketchauhan18/restaurant-management/assets/132349103/7c7d62da-80d6-4202-a606-53af2b58961c)
 
 ### User Browsing
 
