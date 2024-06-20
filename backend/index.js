@@ -15,7 +15,7 @@ dotenv.config({
 connectDB();
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "https://bhojana.vercel.app"],
     credentials: true, // so that fe can get store cookies
   }),
 );
