@@ -1,4 +1,4 @@
-const zod = require('zod')
+const zod = require("zod");
 
 const restaurantValidationSchema = zod.object({
   name: zod.string(),
@@ -10,7 +10,7 @@ const restaurantValidationSchema = zod.object({
   number: zod.string(),
   email: zod.string(),
   websiteURL: zod.string(),
-  imageUrls: zod.array(zod.string()).optional()
-})
+  imageUrls: zod.array(zod.string()).optional(),
+});
 
 module.exports = restaurantValidationSchema;

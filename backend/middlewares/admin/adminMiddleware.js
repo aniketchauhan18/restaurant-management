@@ -1,10 +1,10 @@
-const adminMiddleware = ( req, res, next) => {
-  if(!req.user || req.user.role !== 'admin' ) {
+const adminMiddleware = (req, res, next) => {
+  if (!req.user || req.user.role !== "admin") {
     return res.status(401).json({
-      error: "Unauthorized"
-    })
+      error: "Unauthorized",
+    });
   }
-  next()
-}
+  next();
+};
 
 module.exports = adminMiddleware;

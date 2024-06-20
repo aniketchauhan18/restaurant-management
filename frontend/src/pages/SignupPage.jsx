@@ -15,7 +15,7 @@ function SignupPage() {
       firstName: formData.get("firstName"),
       lastName: formData.get("lastName"),
       role: formData.get("role"),
-      email: formData.get("firstName"),
+      email: formData.get("email"),
       password: formData.get("password"),
     };
     console.log(obj);
@@ -41,8 +41,9 @@ function SignupPage() {
     }
   };
 
-  const selectClasses =" text-zinc-600 p-2 text-base rounded-lg bg-white/40 border border-white/40";
-  const inputClasses = "text-zinc-600 bg-white/40 border border-white/40"
+  const selectClasses =
+    " text-zinc-600 p-2 text-sm sm:text-base rounded-lg bg-white/40 border border-white/40";
+  const inputClasses = "text-zinc-600 bg-white/40 border border-white/40";
   return (
     <div className="flex font-inter w-full h-screen justify-center items-center background-image">
       <div className="flex flex-col w-full sm:w-3/4 justify-center items-center">
@@ -66,7 +67,12 @@ function SignupPage() {
                 placeholder="Firstname"
                 required
               />
-              <input name="lastName" placeholder="Lastname" type="text" className={inputClasses}/>
+              <input
+                name="lastName"
+                placeholder="Lastname"
+                type="text"
+                className={inputClasses}
+              />
               <select className={selectClasses} name="role" required>
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
@@ -101,7 +107,10 @@ function SignupPage() {
               </div>
             </div>
             <div className="flex justify-center">
-              <button type="submit" className="text-sm sm:text-base w-32 bg-scarlet-400/95">
+              <button
+                type="submit"
+                className="text-sm sm:text-base w-32 bg-scarlet-400/95"
+              >
                 Signup
               </button>
             </div>

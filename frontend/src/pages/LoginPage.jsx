@@ -100,18 +100,21 @@ function LoginPage() {
                 className="w-full md:text-base bg-white/40 border border-white/40 "
               />
               <div className="flex text-xs gap-1 items-center mt-1">
-              <p className="ml-1">Show password?</p>
-              <div className="flex justify-center items-center">
-                <input
-                  type="checkbox"
-                  value={showPassword}
-                  onChange={showPass}
-                />
+                <p className="ml-1">Show password?</p>
+                <div className="flex justify-center items-center">
+                  <input
+                    type="checkbox"
+                    value={showPassword}
+                    onChange={showPass}
+                  />
+                </div>
               </div>
             </div>
-            </div>
             <div className="flex w-full justify-center sm:mt-4">
-              <button type="submit" className="basis-10/12 text-sm bg-scarlet-400/95">
+              <button
+                type="submit"
+                className="basis-10/12 text-sm bg-scarlet-400/95"
+              >
                 Login
               </button>
             </div>
