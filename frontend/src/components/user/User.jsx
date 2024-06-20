@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import UserRestaurantCard from "./UserRestaurantCard";
 import { Link, useParams } from "react-router-dom";
+import { deployBaseUrl } from "../../api/dataFetcher";
 
 function User() {
   const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3000/api/v1/restaurants/");
+      const response = await fetch(`${deployBaseUrl}/api/v1/restaurants/`);
       const responseData = await response.json();
       console.log(responseData.data);
       setRestaurants(responseData.data);

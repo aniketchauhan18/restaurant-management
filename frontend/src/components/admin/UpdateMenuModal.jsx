@@ -1,5 +1,6 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { IoMdClose } from "react-icons/io";
+import { deployBaseUrl } from "../../api/dataFetcher";
 
 function UpdateMenuModal({ closeModal, name, price, description, menuId }) {
   const queryClient = useQueryClient();
@@ -16,7 +17,7 @@ function UpdateMenuModal({ closeModal, name, price, description, menuId }) {
     try {
       const jwtToken = localStorage.getItem("admin-token");
       const response = await fetch(
-        `http://localhost:3000/api/v1/menus/update/${menuId}`,
+        `${deployBaseUrl}/api/v1/api/v1/menus/update/${menuId}`,
         {
           method: "PATCH",
           headers: {

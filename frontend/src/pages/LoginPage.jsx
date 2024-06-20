@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { deployBaseUrl } from "../api/dataFetcher";
 // import { GoogleLogin } from '@react-oauth/google';
 // import { jwtDecode } from 'jwt-decode'
 
@@ -18,7 +19,7 @@ function LoginPage() {
         email: formData.get("email"),
         password: formData.get("password"),
       };
-      const response = await fetch("http://localhost:3000/api/v1/users/login", {
+      const response = await fetch(`${deployBaseUrl}/api/v1/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

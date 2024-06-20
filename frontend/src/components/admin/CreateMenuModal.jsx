@@ -1,6 +1,7 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
+import { deployBaseUrl } from "../../api/dataFetcher";
 
 function CreateMenuModal({ closeModal }) {
   const queryClient = useQueryClient();
@@ -17,7 +18,7 @@ function CreateMenuModal({ closeModal }) {
     try {
       const jwtToken = localStorage.getItem("admin-token");
       const response = await fetch(
-        `http://localhost:3000/api/v1/menus/register/${restaurantId}`,
+        `${deployBaseUrl}/api/v1/menus/register/${restaurantId}`,
         {
           method: "POST",
           headers: {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { useNavigate, useParams } from "react-router-dom";
+import { deployBaseUrl } from "../../api/dataFetcher";
 
 function CreateRestaurantModal({ closeModal }) {
   const [imageURLs, setImageURLs] = useState([]);
@@ -88,7 +89,7 @@ function CreateRestaurantModal({ closeModal }) {
       const jwtToken = localStorage.getItem("admin-token");
 
       const response = await fetch(
-        "http://localhost:3000/api/v1/restaurants/register",
+        `${deployBaseUrl}/api/v1/restaurants/register`,
         {
           method: "POST",
           headers: {

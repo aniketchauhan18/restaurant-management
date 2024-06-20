@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { deployBaseUrl } from "../api/dataFetcher";
 
 function SignupPage() {
   const navigate = useNavigate();
@@ -20,16 +21,13 @@ function SignupPage() {
     };
     console.log(obj);
     try {
-      const response = await fetch(
-        "http://localhost:3000/api/v1/users/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(obj),
+      const response = await fetch(`${deployBaseUrl}/api/v1/users/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify(obj),
+      });
       const data = await response.json();
       alert(data.message);
 

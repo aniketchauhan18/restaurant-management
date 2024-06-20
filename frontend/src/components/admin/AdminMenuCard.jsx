@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import UpdateMenuModal from "./UpdateMenuModal";
+import { deployBaseUrl } from "../../api/dataFetcher";
 
 function AdminMenuCard({ name, price, description, menuId }) {
   const queryClient = useQueryClient();
@@ -17,16 +18,13 @@ function AdminMenuCard({ name, price, description, menuId }) {
   const handleDeleteMenu = async () => {
     if (window.confirm("Are you sure you want to delete this menu?")) {
       try {
-        const res = await fetch(
-          `http://localhost:3000/api/v1/menus/delete/${menuId}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${jwtToken}`,
-            },
+        const res = await fetch(`${deployBaseUrl}/menus/delete/${menuId}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwtToken}`,
           },
-        );
+        });
         queryClient.invalidateQueries({ queryKey: ["menuData"] });
       } catch (err) {
         console.log(err);
