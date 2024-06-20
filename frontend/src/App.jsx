@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
@@ -13,7 +13,8 @@ import MainLayout from "./components/common/MainLayout";
 import AdminRestaurant from "./components/admin/AdminRestaurant";
 import ImgUpload from "./pages/ImgUpload";
 function App() {
-  const clientId = '680449140889-81vr6en7jh7esto3g5r7bloevevif989.apps.googleusercontent.com'
+  const clientId =
+    "680449140889-81vr6en7jh7esto3g5r7bloevevif989.apps.googleusercontent.com";
   return (
     <GoogleOAuthProvider clientId={clientId}>
       <Routes>
@@ -84,7 +85,7 @@ function App() {
             </MainLayout>
           }
         />
-        <Route 
+        <Route
           path="/imgup"
           element={
             <MainLayout>

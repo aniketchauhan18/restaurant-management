@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 function AdminRestaurantCard({ restaurantData }) {
   const {
@@ -28,4 +28,4 @@ function AdminRestaurantCard({ restaurantData }) {
   );
 }
 
-export default AdminRestaurantCard
+export default AdminRestaurantCard;

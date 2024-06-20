@@ -8,8 +8,6 @@ function CreateRestaurantModal({ closeModal }) {
 
   const { id } = useParams();
 
-
-
   /*
     const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +31,7 @@ function CreateRestaurantModal({ closeModal }) {
   }
   */
 
-  const handleImagesSubmit = async(e) => {
+  const handleImagesSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     try {
@@ -42,17 +40,17 @@ function CreateRestaurantModal({ closeModal }) {
         {
           method: "POST",
           body: formData,
-        }
+        },
       );
       const data = await response.json();
-      console.log(data)
+      console.log(data);
       if (response.ok) {
         setImageURLs([...imageURLs, data.data.url]);
       }
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,17 +61,16 @@ function CreateRestaurantModal({ closeModal }) {
         {
           method: "POST",
           body: formData,
-        }
+        },
       );
       const data = await response.json();
-      console.log(data)
+      console.log(data);
       if (response.ok) {
         setImageURLs([...imageURLs, data.data.url]);
       }
     } catch (err) {
       console.log(err);
     }
-
 
     const obj = {
       name: formData.get("name"),
@@ -124,11 +121,11 @@ function CreateRestaurantModal({ closeModal }) {
           />
         </div>
         <div className="p-1 mt-2">
-          <div
-            
-            className="flex flex-col gap-10 w-full rest-frm  bg-opacity-65 rounded items-start  "
-          >
-            <form onSubmit={handleSubmit} className="flex flex-col md:flex-row w-full justify-evenly gap-3">
+          <div className="flex flex-col gap-10 w-full rest-frm  bg-opacity-65 rounded items-start  ">
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col md:flex-row w-full justify-evenly gap-3"
+            >
               <div className="flex flex-col gap-3 basis-1/2">
                 <input placeholder="Restaurant Name" name="name" required />
                 <input placeholder="Country" name="country" required />

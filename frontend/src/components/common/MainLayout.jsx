@@ -6,7 +6,6 @@ function MainLayout({ children }) {
   const [adminRestaurant, setAdminRestaurant] = useState(false);
   const userRoleRef = useRef();
 
-
   useEffect(() => {
     setAdminRestaurant(false);
     setIsLoggedIn(false);
@@ -15,7 +14,7 @@ function MainLayout({ children }) {
       userRoleRef.current = "admin";
       setAdminRestaurant(true);
       setIsLoggedIn(true);
-    } else if(localStorage.getItem("user-token")) {
+    } else if (localStorage.getItem("user-token")) {
       userRoleRef.current = "user";
       setAdminRestaurant(false);
       setIsLoggedIn(true);
@@ -24,7 +23,7 @@ function MainLayout({ children }) {
 
   return (
     <div>
-      <Header isLoggedIn={isLoggedIn} adminRestaurant={adminRestaurant}/>
+      <Header isLoggedIn={isLoggedIn} adminRestaurant={adminRestaurant} />
       {children}
       <Footer />
     </div>

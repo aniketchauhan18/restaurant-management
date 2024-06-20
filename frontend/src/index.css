@@ -12,6 +12,17 @@ body,
   box-sizing: border-box;
 }
 
+.background-image {
+  background-image: url(./assets/background.svg);
+  background-size: cover;
+  background-position: center;
+}
+
+
+input::placeholder {
+    color: #6e6e6e; /* Custom gray color for placeholder text */
+}
+
 /* nav-bar */
 @media (max-width: 570px) {
   .restaurant-heading {

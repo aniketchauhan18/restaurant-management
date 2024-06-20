@@ -1,9 +1,8 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { IoMdClose } from "react-icons/io";
 
-function UpdateMenuModal({ closeModal, name, price, description, menuId}) {
+function UpdateMenuModal({ closeModal, name, price, description, menuId }) {
   const queryClient = useQueryClient();
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,7 +12,7 @@ function UpdateMenuModal({ closeModal, name, price, description, menuId}) {
       price: formData.get("price"),
       description: formData.get("description"),
     };
-    console.log(menuId)
+    console.log(menuId);
     try {
       const jwtToken = localStorage.getItem("admin-token");
       const response = await fetch(
@@ -28,12 +27,12 @@ function UpdateMenuModal({ closeModal, name, price, description, menuId}) {
         },
       );
       if (response.ok) {
-        queryClient.invalidateQueries({ queryKey: ['menuData'] });
+        queryClient.invalidateQueries({ queryKey: ["menuData"] });
         closeModal();
       }
     } catch (e) {
       console.log(e);
-      throw new Error("Error in UpdateMenuModal")
+      throw new Error("Error in UpdateMenuModal");
     }
   };
 
@@ -49,9 +48,25 @@ function UpdateMenuModal({ closeModal, name, price, description, menuId}) {
         </div>
         <div className="p-4 rounded-md text-stone-600">
           <form onSubmit={handleSubmit} className="flex flex-col gap-4 ">
-            <input type="text" defaultValue={name} placeholder="Name" name="name" required />
-            <input type="text" defaultValue={price} required name="price" placeholder="Price" />
-            <textarea defaultValue={description} placeholder="Description" name="description" />
+            <input
+              type="text"
+              defaultValue={name}
+              placeholder="Name"
+              name="name"
+              required
+            />
+            <input
+              type="text"
+              defaultValue={price}
+              required
+              name="price"
+              placeholder="Price"
+            />
+            <textarea
+              defaultValue={description}
+              placeholder="Description"
+              name="description"
+            />
             <div className="flex justify-center w-full">
               <button
                 className="font-normal w-36 max-w-36 font-inter"

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
 
 function CreateMenuModal({ closeModal }) {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   const { restaurantId } = useParams();
   console.log(restaurantId);
   const handleSubmit = async (e) => {
@@ -28,7 +28,7 @@ function CreateMenuModal({ closeModal }) {
         },
       );
       if (response.ok) {
-        queryClient.invalidateQueries({ queryKey: ['menuData'] });
+        queryClient.invalidateQueries({ queryKey: ["menuData"] });
         closeModal();
       }
     } catch (e) {

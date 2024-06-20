@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Header({ isLoggedIn, adminRestaurant }) {
-  const [showLogout , setShowLogout] = useState(isLoggedIn);
+  const [showLogout, setShowLogout] = useState(isLoggedIn);
   const navigate = useNavigate();
 
   const linkClasses =
     "text-scarlet-400 py-1 px-1 hover:text-scarlet-500 transition ease-in-out duration-300 font-inter nav-links text-sm sm:text-base";
-  
+
   useEffect(() => {
     setShowLogout(isLoggedIn);
   }, [isLoggedIn]);
@@ -18,9 +18,9 @@ function Header({ isLoggedIn, adminRestaurant }) {
     localStorage.removeItem("user-token");
     localStorage.removeItem("userId");
     setShowLogout(false);
-    navigate('/')
+    navigate("/");
   };
-  
+
   const userId = localStorage.getItem("userId");
   const restaurantPath = showLogout
     ? adminRestaurant
@@ -30,7 +30,7 @@ function Header({ isLoggedIn, adminRestaurant }) {
 
   return (
     <header className="flex justify-center">
-      <nav className="flex rounded-md px-3 items-center w-full h-12 py-4 bg-gray-100/50 backdrop-blur  bg-opacity-45 m-5 justify-between">
+      <nav className="flex rounded-md px-3 items-center w-full h-12 py-4 bg-gray-100/80  m-5 justify-between">
         <Link
           to={"/"}
           className="font-inter font-medium text-xl ml-2 text-stone-700 restaurant-heading flex justify-center items-center"
@@ -42,18 +42,22 @@ function Header({ isLoggedIn, adminRestaurant }) {
             <Link className={linkClasses} to={restaurantPath}>
               Restaurants
             </Link>
-            {showLogout || <Link className={linkClasses} to={"/register"}>
-              Signup
-            </Link>}
+            {showLogout || (
+              <Link className={linkClasses} to={"/register"}>
+                Signup
+              </Link>
+            )}
             <div className="flex justify-center">
-            {showLogout ?
-              <Link to={'/'} onClick={handleLogout} className={linkClasses}>
-                Logout
-              </Link> : <Link className={linkClasses} to={"/login"}>
-              Login
-            </Link>
-            }
-          </div>
+              {showLogout ? (
+                <Link to={"/"} onClick={handleLogout} className={linkClasses}>
+                  Logout
+                </Link>
+              ) : (
+                <Link className={linkClasses} to={"/login"}>
+                  Login
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </nav>

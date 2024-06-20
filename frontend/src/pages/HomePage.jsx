@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 
 function HomePage() {
   const cardDivClasses =
-    "flex font-inter backdrop-blur p-3 bg-stone-100/20 flex-col rounded md:text-base flex flex-col justify-center";
+    "flex font-inter p-2 bg-zinc-100/40 flex-col rounded md:text-base flex flex-col justify-center border";
 
-  const readMoreClasses = "self-end text-sm hover:text-stone-500 duration-300 mt-2";
+  const readMoreClasses =
+    "self-end text-sm hover:text-stone-500 duration-300 mt-2";
 
   return (
     <div className="m-5 text-sm">
@@ -30,7 +31,7 @@ function HomePage() {
           </div>
         </div>
       </div>
-      <div className="flex flex-row justify-between  parent-cards-hp gap-3 text-stone-700  p-3 rounded-lg">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 parent-cards-hp gap-3 text-stone-700  p-3 rounded-lg">
         <div className={cardDivClasses}>
           <p className="text-lg font-medium">Menu Management</p>
           <p className="text-sm">

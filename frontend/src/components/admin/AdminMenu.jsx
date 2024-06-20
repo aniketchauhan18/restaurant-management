@@ -20,7 +20,7 @@ function AdminMenu() {
     queryFn: () => fetchMenuData(restaurantId),
     staleTime: Infinity,
   });
-  console.log(menuData)
+  console.log(menuData);
   const renderContent = (() => {
     if (isLoading) {
       return <div>Loading...</div>;
@@ -60,13 +60,8 @@ function AdminMenu() {
   return (
     <div className="flex font-inter flex-col bg-gray-50 min-h-screen mx-8 p-3">
       <div className="flex justify-between">
-        <p className="text-3xl ml-4">
-          Menus
-        </p>
-        <button
-          onClick={() => setShowMenuModal(true)}
-          className={linkClasses}
-        >
+        <p className="text-3xl ml-4">Menus</p>
+        <button onClick={() => setShowMenuModal(true)} className={linkClasses}>
           Add Menu
         </button>
       </div>
@@ -85,7 +80,7 @@ function AdminMenu() {
           </div> */}
         </div>
       </div>
-      <div>{showMenuModal && <CreateMenuModal closeModal={closeModal}/>}</div>
+      <div>{showMenuModal && <CreateMenuModal closeModal={closeModal} />}</div>
     </div>
   );
 }
