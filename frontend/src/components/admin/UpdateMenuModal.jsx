@@ -17,7 +17,7 @@ function UpdateMenuModal({ closeModal, name, price, description, menuId }) {
     try {
       const jwtToken = localStorage.getItem("admin-token");
       const response = await fetch(
-        `${deployBaseUrl}/api/v1/api/v1/menus/update/${menuId}`,
+        `${deployBaseUrl}/api/v1/menus/update/${menuId}`,
         {
           method: "PATCH",
           headers: {
