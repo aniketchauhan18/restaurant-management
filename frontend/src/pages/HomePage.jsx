@@ -33,31 +33,26 @@ function HomePage() {
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 parent-cards-hp gap-3 text-stone-700  p-3 rounded-lg">
         <div className={cardDivClasses}>
-          <p className="text-lg font-medium">Menu Management</p>
+          <p className="text-lg font-medium">Restaurant Creation</p>
           <p className="text-sm">
-            Effortlessly manage and update your restaurants menu. Showcase your
-            culinary creations with precision and keep your customers informed
-            about the latest offerings.
+          Set up your restaurant profile with ease. Provide essential details and make a lasting impression with a captivating cover photo. Start attracting customers today!
           </p>
-          <Link to={"/userRestaurnats"} className={readMoreClasses}>
+          <Link className={readMoreClasses}>
             Read more
           </Link>
         </div>
         <div className={cardDivClasses}>
           <p className="text-lg font-medium">Menu Management</p>
           <p className="text-sm">
-            Effortlessly manage and update your restaurants menu. Showcase your
-            culinary creations with precision and keep your customers informed
-            about the latest offerings.
+          Personalize your menu items with detailed descriptions, pricing, and enticing photos. Make each dish stand out and give your customers all the information they need.
           </p>
           <Link className={readMoreClasses}>Read more</Link>
         </div>
         <div className={cardDivClasses}>
-          <p className="text-lg font-medium">Menu Management</p>
+          <p className="text-lg font-medium">Customer Engagement
+          </p>
           <p className="text-sm">
-            Effortlessly manage and update your restaurants menu. Showcase your
-            culinary creations with precision and keep your customers informed
-            about the latest offerings.
+          Connect with your customers through feedback and reviews. Enhance your service and build a loyal customer base by responding to their needs and preferences.
           </p>
           <Link className={readMoreClasses}>Read more</Link>
         </div>

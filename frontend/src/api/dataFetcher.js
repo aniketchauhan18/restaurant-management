@@ -1,4 +1,4 @@
-export const deployBaseUrl = "http://localhost:3000"; //https://restaurantapp-7atz.onrender.com
+export const deployBaseUrl = "https://restaurantapp-7atz.onrender.com"; //http://localhost:3000
 
 export const fetchMenuData = async (restaurantId) => {
   const res = await fetch(`${deployBaseUrl}/api/v1/menus/${restaurantId}`);
