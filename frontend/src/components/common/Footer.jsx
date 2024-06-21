@@ -17,11 +17,11 @@ function Footer() {
         <div className="text-sm text-gray-600 flex sm:justify-normal">
           © 2024 Restaurant. All rights reserved.
         </div>
-        <div className="flex space-x-4 sm:justify-end text-sm">
-          <Link className="hover:border-b hover:border-zinc-700 transition ease-in-out duration-300 ">
+        <div className="flex flex-col sm:flex-row sm:space-x-3 gap-0.5 mt-1 sm:mt-0 sm:justify-end text-sm">
+          <Link className=" transition ease-in-out duration-300 ">
             Privacy Policy
           </Link>
-          <Link className="hover:border-b hover:border-zinc-700 transition ease-in-out duration-300 ">
+          <Link className=" transition ease-in-out duration-300 ">
             Terms of Service
           </Link>
         </div>

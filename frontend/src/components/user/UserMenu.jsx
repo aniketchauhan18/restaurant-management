@@ -55,12 +55,10 @@ function UserMenu() {
   })();
 
   return (
-    <div className="flex font-inter flex-col h-dvh bg-cover bg-center">
+    <div className="flex font-inter flex-col h-dvh bg-cover bg-center p-5">
       <div className="w-full mt-4 flex justify-center">
-        <div className="flex justify-center items-center p-3 gap-3 w-full">
-          <div className="flex flex-col flex-wrap sm:flex-row justify-center  gap-3">
-            {renderContent}
-          </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 p-3 gap-3 w-full">
+          {renderContent}
         </div>
       </div>
     </div>

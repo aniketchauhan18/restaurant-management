@@ -18,13 +18,16 @@ function AdminMenuCard({ name, price, description, menuId }) {
   const handleDeleteMenu = async () => {
     if (window.confirm("Are you sure you want to delete this menu?")) {
       try {
-        const res = await fetch(`${deployBaseUrl}/api/v1/menus/delete/${menuId}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${jwtToken}`,
+        const res = await fetch(
+          `${deployBaseUrl}/api/v1/menus/delete/${menuId}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${jwtToken}`,
+            },
           },
-        });
+        );
         queryClient.invalidateQueries({ queryKey: ["menuData"] });
       } catch (err) {
         console.log(err);

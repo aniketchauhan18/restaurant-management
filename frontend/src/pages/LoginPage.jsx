@@ -19,7 +19,7 @@ function LoginPage() {
         email: formData.get("email"),
         password: formData.get("password"),
       };
-      console.log(deployBaseUrl)
+      console.log(deployBaseUrl);
       const response = await fetch(`${deployBaseUrl}/api/v1/users/login`, {
         method: "POST",
         headers: {

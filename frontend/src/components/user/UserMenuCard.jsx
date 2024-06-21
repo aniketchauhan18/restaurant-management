@@ -7,7 +7,7 @@ function UserMenuCard({ name, price, description }) {
       />
       <div className="flex flex-col">
         <p className="font-inter text-stone-800 text-sm sm:text-base">{name}</p>
-        <p className="font-inter text-stone-600 text-sm">${price}</p>
+        <p className="font-inter text-stone-600 text-sm">₹ {price}</p>
         <p className="font-inter text-stone-500 text-sm">{description}</p>
       </div>
     </div>
