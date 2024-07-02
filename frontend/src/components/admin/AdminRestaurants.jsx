@@ -31,9 +31,11 @@ function AdminRestaurants() {
 
   const filteredRestaurants = useMemo(() => {
     return restaurants?.filter((restaurant) => {
-      return filterByName ? restaurant.name.toLowerCase().includes(filterByName.toLowerCase()) : true;
-    })
-  }, [filterByName, restaurants])
+      return filterByName
+        ? restaurant.name.toLowerCase().includes(filterByName.toLowerCase())
+        : true;
+    });
+  }, [filterByName, restaurants]);
 
   const renderContent = (() => {
     if (isLoading) {
@@ -45,7 +47,7 @@ function AdminRestaurants() {
     }
 
     if (filteredRestaurants) {
-      console.log(filteredRestaurants, "ss")
+      console.log(filteredRestaurants, "ss");
       return filteredRestaurants?.map((restaurant) => {
         return (
           <Link

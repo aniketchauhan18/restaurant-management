@@ -3,7 +3,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
-import UserMenu from "./components/user/UserMenu";
+import UserRestaurant from "./components/user/UserRestaurant";
 import CreateRestaurant from "./components/admin/CreateRestaurant";
 import User from "./components/user/User";
 import Admin from "./components/admin/Admin";
@@ -65,7 +65,7 @@ function App() {
           path="/user/:id/:restaurantId/menu"
           element={
             <MainLayout>
-              <UserMenu />
+              <UserRestaurant />
             </MainLayout>
           }
         />

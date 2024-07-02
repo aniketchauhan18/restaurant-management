@@ -35,24 +35,27 @@ function HomePage() {
         <div className={cardDivClasses}>
           <p className="text-lg font-medium">Restaurant Creation</p>
           <p className="text-sm">
-          Set up your restaurant profile with ease. Provide essential details and make a lasting impression with a captivating cover photo. Start attracting customers today!
-          </p>
-          <Link className={readMoreClasses}>
-            Read more
-          </Link>
-        </div>
-        <div className={cardDivClasses}>
-          <p className="text-lg font-medium">Menu Management</p>
-          <p className="text-sm">
-          Personalize your menu items with detailed descriptions, pricing, and enticing photos. Make each dish stand out and give your customers all the information they need.
+            Set up your restaurant profile with ease. Provide essential details
+            and make a lasting impression with a captivating cover photo. Start
+            attracting customers today!
           </p>
           <Link className={readMoreClasses}>Read more</Link>
         </div>
         <div className={cardDivClasses}>
-          <p className="text-lg font-medium">Customer Engagement
-          </p>
+          <p className="text-lg font-medium">Menu Management</p>
           <p className="text-sm">
-          Connect with your customers through feedback and reviews. Enhance your service and build a loyal customer base by responding to their needs and preferences.
+            Personalize your menu items with detailed descriptions, pricing, and
+            enticing photos. Make each dish stand out and give your customers
+            all the information they need.
+          </p>
+          <Link className={readMoreClasses}>Read more</Link>
+        </div>
+        <div className={cardDivClasses}>
+          <p className="text-lg font-medium">Customer Engagement</p>
+          <p className="text-sm">
+            Connect with your customers through feedback and reviews. Enhance
+            your service and build a loyal customer base by responding to their
+            needs and preferences.
           </p>
           <Link className={readMoreClasses}>Read more</Link>
         </div>
