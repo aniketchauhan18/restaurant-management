@@ -1,34 +1,59 @@
-import { useEffect, useMemo, useState } from "react";
+import {
+  useQuery,
+  useQueryClient,
+  useInfiniteQuery,
+} from "@tanstack/react-query";
+import { useMemo, useState } from "react";
 import UserRestaurantCard from "./UserRestaurantCard";
 import { Link, useParams } from "react-router-dom";
-import { deployBaseUrl } from "../../api/dataFetcher";
+import { fetchRestaurants } from "../../api/dataFetcher";
 import { CiSearch } from "react-icons/ci";
 
 function User() {
-  const [restaurants, setRestaurants] = useState([]);
+  // const [restaurants, setRestaurants] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const [filteredLocation, setFilteredLocation] = useState("");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(`${deployBaseUrl}/api/v1/restaurants/`);
-      const responseData = await response.json();
-      console.log(responseData.data);
-      setRestaurants(responseData.data);
-    };
-    fetchData();
-  }, []);
-
   const { id } = useParams();
 
+  const {
+    data: restaurantData,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ["restaurants", currentPage],
+    queryFn: () => fetchRestaurants(currentPage),
+    keepPreviousData: true,
+    staleTime: Infinity,
+  });
+  const queryClient = useQueryClient();
+
+  // const { data } = useInfiniteQuery({
+  //   queryKey: ["restaurants", currentPage],
+  //   queryFn: ({ pageParam = currentPage }) => fetchRestaurants(pageParam),
+  // })
+  // console.log(data)
+  const totalPages = restaurantData?.meta?.totalPages;
+  const isLastPage = currentPage === totalPages;
+
+  // Function to handle page change
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+    queryClient.invalidateQueries(["restaurants"]);
+  };
+
   const filteredRestaurants = useMemo(() => {
-    return restaurants.filter((restaurant) =>
+    return restaurantData?.data.filter((restaurant) =>
       filteredLocation
-        ? restaurant.address
+        ? restaurant?.address
             .toLowerCase()
             .includes(filteredLocation.toLowerCase())
         : true,
     );
-  }, [restaurants, filteredLocation]);
+  }, [restaurantData, filteredLocation]);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Errr</div>;
+  console.log(filteredRestaurants.length);
 
   const mappedRestaurants = filteredRestaurants.map((restaurant) => {
     return (
@@ -62,9 +87,33 @@ function User() {
           </div>
         </div>
       </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 xl:grid-cols-4 mt-6">
-        {mappedRestaurants}
-      </div>
+      {mappedRestaurants.length > 0 ? (
+        <div className="flex flex-col">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 xl:grid-cols-4 mt-6">
+            {mappedRestaurants}
+          </div>
+          <div className="mt-5 flex justify-end items-center text-zinc-800">
+            <div className="flex gap-3">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="px-2 bg-neutral-50/20 text-zinc-700 hover:bg-neutral-50/20 hover:cursor-pointer hover:text-zinc-600"
+              >
+                Previous
+              </button>
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={isLastPage}
+                className="px-2 bg-neutral-50/20 text-zinc-700 hover:bg-neutral-50/20 hover:cursor-pointer hover:text-zinc-600"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="text-center w-full mt-10">No restaurant found</div>
+      )}
     </main>
   );
 }

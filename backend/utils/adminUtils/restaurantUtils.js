@@ -16,6 +16,12 @@ const findRestaurant = async () => {
   return restaurant;
 };
 
+const findRestaurantsWithPagination = async (skip, limit) => {
+  const restaurants = await Restaurant.find().skip(skip).limit(limit);
+  const totalRestaurants = await Restaurant.countDocuments();
+  return { restaurants, totalRestaurants };
+};
+
 const findRestaurantById = async (id) => {
   const restaurant = await Restaurant.findById(id);
   return restaurant;
@@ -48,4 +54,5 @@ module.exports = {
   findRestaurantByUserId,
   restaurantUpdate,
   restaurantDelete,
+  findRestaurantsWithPagination,
 };

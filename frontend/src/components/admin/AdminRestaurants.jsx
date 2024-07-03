@@ -2,7 +2,7 @@ import AdminRestaurantCard from "./AdminRestaurantCard";
 import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { fetchRestaurants } from "../../api/dataFetcher";
+import { fetchUserRestaurants } from "../../api/dataFetcher";
 import { CiSearch } from "react-icons/ci";
 
 function AdminRestaurants() {
@@ -15,7 +15,7 @@ function AdminRestaurants() {
     isLoading,
   } = useQuery({
     queryKey: ["restaurantsData", id],
-    queryFn: () => fetchRestaurants(id),
+    queryFn: () => fetchUserRestaurants(id),
     staleTime: Infinity,
   });
 

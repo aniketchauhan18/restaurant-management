@@ -7,6 +7,7 @@ const {
   restaurantDelete,
   findRestaurantByUserId,
   findRestaurantById,
+  findRestaurantsWithPagination,
 } = require("../utils/adminUtils/restaurantUtils");
 const {
   entityAlreadyExists,
@@ -44,6 +45,29 @@ const getRestaurant = async (req, res) => {
     return sendEntityResponse(res, restaurants);
   } catch (error) {
     console.log("Error in getRestaurant: ", error);
+    return InternalServerError(res);
+  }
+};
+
+const getRestaurantWithPagenation = async (req, res) => {
+  try {
+    let { page, limit } = req.query;
+    (page = parseInt(page, 10) || 1), (limit = parseInt(limit, 10) || 10);
+    const skip = (page - 1) * limit;
+    const { restaurants, totalRestaurants } =
+      await findRestaurantsWithPagination(skip, limit);
+    const totalPages = Math.ceil(totalRestaurants / limit);
+    const isLastPage = page >= totalPages;
+    return res.status(200).json({
+      data: restaurants,
+      meta: {
+        totalRestaurants,
+        totalPages,
+        isLastPage,
+      },
+    });
+  } catch (err) {
+    console.log("Error in getRestaurantWithPagenation", err);
     return InternalServerError(res);
   }
 };
@@ -106,4 +130,5 @@ module.exports = {
   deleteRestaurant,
   updateRestaurant,
   getRestaurant,
+  getRestaurantWithPagenation,
 };
